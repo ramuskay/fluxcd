@@ -3,12 +3,3 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - ingress-nginx.yaml
-  - longhorn.yaml
-
-configMapGenerator:
-  - name: longhorn-values
-    files:
-      - longhorn/values.yaml
-
-generatorOptions:
-  disableNameSuffixHash: true
