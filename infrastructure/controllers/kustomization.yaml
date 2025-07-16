@@ -3,20 +3,12 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - ingress-nginx.yaml
+  - longhorn.yaml
 
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: infra-longhorn
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: ./infrastructure/controllers/longhorn
-  prune: true
-  wait: true
+configMapGenerator:
+  - name: longhorn-values
+    files:
+      - longhorn/values.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
