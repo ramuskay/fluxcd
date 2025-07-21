@@ -1,0 +1,28 @@
+l2announcements:
+  enabled: true  # Enables Layer 2 announcements for external IP management
+externalIPs:
+  enabled: true  # Allows services to use external IPs for better connectivity
+operator:
+  replicas: 1  # Ensures a single replica of the Cilium operator, suitable for small clusters
+  rollOutPods: true  # Ensures smooth rolling updates of Cilium components
+  rollOutCiliumPods: true  # Ensures that Cilium pods are updated properly during upgrades
+debug:
+  enabled: true  # Enables debug logging for troubleshooting
+
+kubeProxyReplacement: false  # Enables eBPF-based kube-proxy replacement for better performance
+native-routing-cidr: 10.42.0.0/16
+wait: false
+ipam:
+  mode: kubernetes
+  operator:
+    clusterPoolIPv4PodCIDRList: "10.42.0.0/16"
+
+serviceMesh:
+  enabled: true
+
+gatewayAPI:
+  enabled: true
+
+loadBalancer:
+  enabled: true
+  acceleration: "best-effort"  # or "disabled" or "generic"
