@@ -6,8 +6,3 @@ resources:
   - repository.yaml
   - release.yaml
   - secrets.yaml
-spec:
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
