@@ -26,3 +26,10 @@ spec:
     ingress:
       enabled: true
       className: nginx
+    extraVolumes:
+      - name: longhorn-data
+        persistentVolumeClaim:
+          claimName: podinfo-longhorn-pvc
+    extraVolumeMounts:
+      - name: longhorn-data
+        mountPath: /data  # adjust this path as needed
