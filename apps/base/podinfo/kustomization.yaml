@@ -11,6 +11,7 @@ patches:
   - target:
       kind: Deployment
       name: podinfo
+      namespace: podinfo
     patch: |
       - op: add
         path: /spec/template/spec/volumes/-
