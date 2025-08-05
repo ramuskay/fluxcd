@@ -28,5 +28,21 @@ spec:
       className: nginx
   postRenderers:
     - kustomize:
-        patchesStrategicMerge:
-          - patch-podinfo-volume.yaml
+        patches:
+        - target:
+              group: apps
+              version: v1
+              kind: Deployment
+              name: podinfo
+          patch: |
+            - op: add
+              path: /spec/template/spec/volumes/-
+              value:
+                name: longhorn-data
+                persistentVolumeClaim:
+                  claimName: podinfo-longhorn-pvc
+            - op: add
+              path: /spec/template/spec/containers/0/volumeMounts/-
+              value:
+                name: longhorn-data
+                mountPath: /data
