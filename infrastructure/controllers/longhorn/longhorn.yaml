@@ -33,7 +33,6 @@ spec:
       interval: 12h
   values:
     installCRDs: true
-  values.yaml: |-
-    longhorn:
-      defaultSettings:
-        backupTarget: "nfs://192.168.0.15:/volume1/longhorn-backups"
+  valuesFrom:
+    - kind: ConfigMap
+      name: longhorn-values
