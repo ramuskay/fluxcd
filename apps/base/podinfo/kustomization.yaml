@@ -6,6 +6,7 @@ resources:
   - repository.yaml
   - release.yaml
   - secrets.yaml
+  - pvc.yaml
 patchesJson6902:
   - target:
       group: apps
