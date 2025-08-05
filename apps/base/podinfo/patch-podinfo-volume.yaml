@@ -9,4 +9,4 @@
   path: /spec/template/spec/containers/0/volumeMounts/-
   value:
     name: longhorn-data
-    mountPath: /data
+    mountPath: /data2
