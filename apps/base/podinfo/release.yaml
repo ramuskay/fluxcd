@@ -46,3 +46,7 @@ spec:
                 value:
                   name: longhorn-data
                   mountPath: /data2
+              - op: add
+                path: /spec/template/spec/securityContext
+                value:
+                  fsGroup: 101
