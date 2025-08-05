@@ -1,12 +1,17 @@
-- op: add
-  path: /spec/template/spec/volumes/-
-  value:
-    name: longhorn-data
-    persistentVolumeClaim:
-      claimName: podinfo-longhorn-pvc
-
-- op: add
-  path: /spec/template/spec/containers/0/volumeMounts/-
-  value:
-    name: longhorn-data
-    mountPath: /data2
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podinfo
+  namespace: podinfo
+spec:
+  template:
+    spec:
+      volumes:
+        - name: longhorn-data
+          persistentVolumeClaim:
+            claimName: podinfo-longhorn-pvc
+      containers:
+        - name: podinfo
+          volumeMounts:
+            - name: longhorn-data
+              mountPath: /data2
