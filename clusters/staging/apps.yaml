@@ -18,20 +18,3 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
-  patches:
-  - target:
-      kind: Deployment
-      name: podinfo
-      namespace: podinfo
-    patch: |
-      - op: add
-        path: /spec/template/spec/volumes/-
-        value:
-          name: longhorn-data
-          persistentVolumeClaim:
-            claimName: podinfo-longhorn-pvc
-      - op: add
-        path: /spec/template/spec/containers/0/volumeMounts/-
-        value:
-          name: longhorn-data
-          mountPath: /data2

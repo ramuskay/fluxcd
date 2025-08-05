@@ -8,11 +8,7 @@ resources:
   - secrets.yaml
   - pvc.yaml
 patches:
-  - target:
-      kind: Deployment
-      name: podinfo
-      namespace: podinfo
-    patch: |
+  - patch: |
       - op: add
         path: /spec/template/spec/volumes/-
         value:
@@ -24,3 +20,6 @@ patches:
         value:
           name: longhorn-data
           mountPath: /data2
+    target:
+      kind: Deployment
+      name: podinfo
