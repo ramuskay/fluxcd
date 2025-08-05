@@ -1,2 +1,2 @@
-defaultSettings:
+defaultBackupStore:
   backupTarget: nfs://192.168.0.15:/volume1/longhorn-backups
