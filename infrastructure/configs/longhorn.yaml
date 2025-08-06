@@ -17,4 +17,4 @@ metadata:
   name: restore-sysbackup
   namespace: longhorn-system
 spec:
-  systemBackup: sysbacku-6b773701-6c64-48c9-82b8-24775d6e3384
+  systemBackup: sysbacku-e5f107de-3e6a-4ff1-af3e-e488691f5a55
