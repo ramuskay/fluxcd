@@ -10,7 +10,6 @@ spec:
   retain: 1
   parameters:
     volume-backup-policy: if-not-present
-  systemBackup: sysbacku-6b773701-6c64-48c9-82b8-24775d6e3384
 ---
 apiVersion: longhorn.io/v1beta2
 kind: SystemRestore
