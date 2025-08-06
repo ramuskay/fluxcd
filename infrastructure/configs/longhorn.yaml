@@ -25,9 +25,9 @@ metadata:
   name: wait-for-systemrestore
   namespace: longhorn-system
 spec:
-  serviceAccountName: longhorn-service-account
   template:
     spec:
+      serviceAccountName: longhorn-service-account
       containers:
         - name: wait
           image: bitnami/kubectl:latest
