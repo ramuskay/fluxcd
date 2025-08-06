@@ -10,3 +10,11 @@ spec:
   retain: 1
   parameters:
     volume-backup-policy: if-not-present
+---
+apiVersion: longhorn.io/v1beta2
+kind: SystemRestore
+metadata:
+  name: restore-sysbackup
+  namespace: longhorn-system
+spec:
+  systemBackup: sysbackup
