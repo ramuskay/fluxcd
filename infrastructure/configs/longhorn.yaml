@@ -17,7 +17,7 @@ metadata:
   name: restore-sysbackup
   namespace: longhorn-system
 spec:
-  systemBackup: sysbacku-939f43b0-c242-4019-a56a-6faee8c859e1 #This value is changed automatically by automation when rebuilding the cluster. In nominal state never reapplied
+  systemBackup: sysbacku-fe58dcda-a0e5-4e5e-839c-f700661ad530 #This value is changed automatically by automation when rebuilding the cluster. In nominal state never reapplied
 # This job waits for the SystemRestore to complete
 # It is to ensure that the restore process has finished before proceeding with other deployments relying on PV
 # Thanks to wait: true, FluxCD will wait for Completed status on the job before proceeding
