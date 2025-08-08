@@ -6,3 +6,4 @@ resources:
   - kube-vip
   - longhorn
   - kured
+  - signoz
