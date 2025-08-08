@@ -23,6 +23,8 @@ spec:
         name: signoz
         namespace: kube-system
       interval: 12h
+  install:
+    createNamespace: true
   values:
     global:
       storageClass: longhorn
