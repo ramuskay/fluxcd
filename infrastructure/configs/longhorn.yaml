@@ -6,10 +6,34 @@ metadata:
   namespace: longhorn-system
 spec:
   task: system-backup
-  cron: '*/10 * * * *'
+  cron: '*/30 * * * *'
   retain: 2
   parameters:
     volume-backup-policy: if-not-present
+---
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: recurring-snapshot-delete
+  namespace: longhorn-system
+spec:
+  cron: "15,45 * * * *"
+  task: "snapshot-delete"
+  groups:
+    - default
+  retain: 5
+  concurrency: 0
+---
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: recurring-filesystem-trim
+  namespace: longhorn-system
+spec:
+  cron: "2 0 * * 0"
+  task: "filesystem-trim"
+  groups:
+    - default
 ---
 apiVersion: longhorn.io/v1beta2
 kind: SystemRestore
