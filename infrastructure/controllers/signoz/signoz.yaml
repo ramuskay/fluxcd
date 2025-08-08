@@ -23,3 +23,8 @@ spec:
         name: signoz
         namespace: kube-system
       interval: 12h
+  values:
+    global:
+      storageClass: longhorn
+    clickhouse:
+      installCustomStorageClass: true
