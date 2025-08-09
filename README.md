@@ -61,7 +61,7 @@ The apps configuration is structured into:
 
 - **apps/base/** dir contains namespaces and Helm release definitions
 - **apps/production/** dir contains the production Helm release values
-- **apps/staging/** dir contains the staging values
+- **apps/staging/** dir contains the staging values 
 
 ```
 ./apps/
