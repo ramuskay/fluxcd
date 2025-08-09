@@ -17,10 +17,10 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: open-telemetry
+      chart: opentelemetry-operator
       sourceRef:
         kind: HelmRepository
-        name: opentelemetry-operator
+        name: open-telemetry
         namespace: platform
       interval: 12h
   values:
