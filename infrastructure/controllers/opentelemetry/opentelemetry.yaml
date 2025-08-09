@@ -32,4 +32,5 @@ spec:
     manager:
       collectorImage:
         repository: otel/opentelemetry-collector-k8s
-      extraArgs: "--enable-go-instrumentation=true"
+      extraArgs:
+        - --enable-go-instrumentation=true
