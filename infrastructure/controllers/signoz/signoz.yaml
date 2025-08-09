@@ -53,3 +53,15 @@ spec:
         name: signoz
         namespace: platform
       interval: 12h
+  values:
+    global:
+      cloud: others
+      clusterName: canadium
+      deploymentEnvironment: production
+    otelCollectorEndpoint: signoz-release-otel-collector.platform.svc.cluster.local:4317
+    otelInsecure: true
+    presets:
+      otlpExporter:
+        enabled: true
+      loggingExporter:
+        enabled: false
