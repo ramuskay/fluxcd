@@ -25,6 +25,10 @@ spec:
       interval: 12h
   values:
     admissionWebhooks:
-      certManager.enabled: false
-      autoGenerateCert.enabled: true
-    manager.collectorImage.repository: otel/opentelemetry-collector-k8s
+      certManager:
+        enabled: false
+      autoGenerateCert:
+        enabled: true
+    manager:
+      collectorImage:
+        repository: otel/opentelemetry-collector-k8s
