@@ -32,5 +32,4 @@ spec:
     manager:
       collectorImage:
         repository: otel/opentelemetry-collector-k8s
-      featureGatesMap:
-        operator.autoinstrumentation.go: "true"
+      extraArgs: "--enable-go-instrumentation=true"
