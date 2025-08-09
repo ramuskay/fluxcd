@@ -47,9 +47,9 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: signoz
+      chart: k8s-infra
       sourceRef:
         kind: HelmRepository
-        name: k8s-infra
+        name: signoz
         namespace: platform
       interval: 12h
