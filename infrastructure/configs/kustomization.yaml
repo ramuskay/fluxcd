@@ -4,3 +4,4 @@ resources:
   - cluster-issuers.yaml
   - longhorn.yaml
   - kube-vip.yaml
+  - opentelemetrycollector.yaml
