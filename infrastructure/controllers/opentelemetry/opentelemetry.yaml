@@ -32,4 +32,5 @@ spec:
     manager:
       collectorImage:
         repository: otel/opentelemetry-collector-k8s
-      featureGates: "AutoinstrumentationGo=true"
+      featureGatesMap:
+        operator.autoinstrumentation.go: "true"
