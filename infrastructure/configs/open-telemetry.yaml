@@ -25,7 +25,8 @@ spec:
 apiVersion: opentelemetry.io/v1alpha1
 kind: Instrumentation
 metadata:
-  name: my-instrumentation
+  name: global-instrumentation
+  namespace: platform
 spec:
   exporter:
     endpoint: "http://signoz-release-otel-collector.platform.svc.cluster.local:4317"
