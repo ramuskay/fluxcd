@@ -3,8 +3,6 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - ingress-nginx.yaml
-  - kube-vip
-  - longhorn
   - kured
   - signoz
   - opentelemetry
