@@ -6,7 +6,7 @@ metadata:
   namespace: longhorn-system
 spec:
   task: system-backup
-  cron: '*/30 * * * *'
+  cron: '0 23 * * 6'
   retain: 2
   parameters:
     volume-backup-policy: if-not-present
@@ -17,7 +17,7 @@ metadata:
   name: recurring-snapshot-delete
   namespace: longhorn-system
 spec:
-  cron: "15,45 * * * *"
+  cron: "*/15 * * * *"
   task: "snapshot-delete"
   groups:
     - default
