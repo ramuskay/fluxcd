@@ -34,39 +34,39 @@ spec:
   task: "filesystem-trim"
   groups:
     - default
-# ---
-# apiVersion: longhorn.io/v1beta2
-# kind: SystemRestore
-# metadata:
-#   name: restore-sysbackup
-#   namespace: longhorn-system
-# spec:
-#   systemBackup: immediate-system-backup20250811211330 #This value is changed automatically by automation when rebuilding the cluster. In nominal state never reapplied
-# # This job waits for the SystemRestore to complete
-# # It is to ensure that the restore process has finished before proceeding with other deployments relying on PV
-# # Thanks to wait: true, FluxCD will wait for Completed status on the job before proceeding
-# ---
-# apiVersion: batch/v1
-# kind: Job
-# metadata:
-#   name: wait-for-systemrestore
-#   namespace: longhorn-system
-# spec:
-#   template:
-#     spec:
-#       serviceAccountName: longhorn-service-account
-#       containers:
-#         - name: wait
-#           image: bitnami/kubectl:latest
-#           command:
-#             - /bin/sh
-#             - -c
-#             - |
-#               echo "Waiting for SystemRestore to complete..."
-#               until [ "$(kubectl get systemrestore restore-sysbackup -n longhorn-system -o jsonpath='{.status.state}')" = "Completed" ]; do
-#                 echo "Still waiting..."
-#                 sleep 5
-#               done
-#               echo "SystemRestore completed!"
-#       restartPolicy: Never
-#   backoffLimit: 3
+---
+apiVersion: longhorn.io/v1beta2
+kind: SystemRestore
+metadata:
+  name: restore-sysbackup
+  namespace: longhorn-system
+spec:
+  systemBackup: immediate-system-backup20250812091957 #This value is changed automatically by automation when rebuilding the cluster. In nominal state never reapplied
+# This job waits for the SystemRestore to complete
+# It is to ensure that the restore process has finished before proceeding with other deployments relying on PV
+# Thanks to wait: true, FluxCD will wait for Completed status on the job before proceeding
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wait-for-systemrestore
+  namespace: longhorn-system
+spec:
+  template:
+    spec:
+      serviceAccountName: longhorn-service-account
+      containers:
+        - name: wait
+          image: bitnami/kubectl:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Waiting for SystemRestore to complete..."
+              until [ "$(kubectl get systemrestore restore-sysbackup -n longhorn-system -o jsonpath='{.status.state}')" = "Completed" ]; do
+                echo "Still waiting..."
+                sleep 5
+              done
+              echo "SystemRestore completed!"
+      restartPolicy: Never
+  backoffLimit: 3
