@@ -34,7 +34,7 @@ spec:
     createNamespace: true
     timeout: 15m0s
   upgrade:
-    timeout: 15m0s
+    timeout: 15m1s
   values:
     global:
       storageClass: longhorn
