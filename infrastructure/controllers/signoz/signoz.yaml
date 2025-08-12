@@ -32,6 +32,9 @@ spec:
       interval: 12h
   install:
     createNamespace: true
+    timeout: 15m0s
+  upgrade:
+    timeout: 15m0s
   values:
     global:
       storageClass: longhorn
