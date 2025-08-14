@@ -1,0 +1,57 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: podinfo
+spec:
+  interval: 5m
+  url: https://stefanprodan.github.io/podinfo
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: podinfo
+spec:
+  releaseName: podinfo
+  chart:
+    spec:
+      chart: podinfo
+      sourceRef:
+        kind: HelmRepository
+        name: podinfo
+  interval: 50m
+  install:
+    remediation:
+      retries: 3
+  # Default values
+  # https://github.com/stefanprodan/podinfo/blob/master/charts/podinfo/values.yaml
+  values:
+    replicaCount: 2
+    redis:
+      enabled: true
+      repository: public.ecr.aws/docker/library/redis
+      tag: 7.0.6
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              group: apps
+              version: v1
+              kind: Deployment
+              name: podinfo
+            patch: |-
+              - op: add
+                path: /spec/template/spec/volumes/-
+                value:
+                  name: longhorn-data
+                  persistentVolumeClaim:
+                    claimName: podinfo-longhorn-pvc
+              - op: add
+                path: /spec/template/spec/containers/0/volumeMounts/-
+                value:
+                  name: longhorn-data
+                  mountPath: /data2
+              - op: add
+                path: /spec/template/spec/securityContext
+                value:
+                  fsGroup: 101

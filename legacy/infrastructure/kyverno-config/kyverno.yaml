@@ -1,0 +1,21 @@
+---
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: add-imagepullsecret
+spec:
+  rules:
+    - name: add-dockercred-to-all-pods
+      match:
+        resources:
+          kinds:
+            - Deployment
+            - StatefulSet
+            - DaemonSet
+      mutate:
+        patchesJson6902: |-
+          - op: add
+            path: /spec/imagePullSecrets/-
+            value:
+              name: dockercred
+#TODO: REPLACE WITH ESO
