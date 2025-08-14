@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: podinfo-longhorn-pvc
-  namespace: podinfo
+  namespace: default
 spec:
   accessModes:
     - ReadWriteMany
