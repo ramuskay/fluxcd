@@ -27,5 +27,4 @@ spec:
       version: "2.5.x"
   wait: true
   interval: 30m
-  retryInterval: 1m
   timeout: 15m
