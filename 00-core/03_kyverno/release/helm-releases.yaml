@@ -16,7 +16,15 @@ metadata:
 spec:
   releaseName: kyverno
   targetNamespace: kyverno
-  createNamespace: true
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+    wait: true
+  upgrade:
+    remediation:
+      retries: 3
+    wait: true
   chart:
     spec:
       chart: kyverno
@@ -25,6 +33,5 @@ spec:
         name: kyverno
         namespace: flux-system
       version: "2.5.x"
-  wait: true
   interval: 30m
   timeout: 15m
