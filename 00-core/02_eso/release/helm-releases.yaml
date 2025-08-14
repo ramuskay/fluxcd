@@ -20,9 +20,11 @@ spec:
     createNamespace: true
     remediation:
       retries: 3
+      wait: true
   upgrade:
     remediation:
       retries: 3
+      wait: true
   chart:
     spec:
       chart: external-secrets
