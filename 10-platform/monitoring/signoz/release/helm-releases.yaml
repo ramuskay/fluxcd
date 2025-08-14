@@ -29,11 +29,9 @@ spec:
     createNamespace: true
     remediation:
       retries: 3
-    wait: true
   upgrade:
     remediation:
       retries: 3
-    wait: true
   values:
     global:
       storageClass: longhorn
