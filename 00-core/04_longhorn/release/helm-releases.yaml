@@ -16,7 +16,15 @@ metadata:
 spec:
   releaseName: longhorn
   targetNamespace: longhorn-system
-  createNamespace: true
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+    wait: true
+  upgrade:
+    remediation:
+      retries: 3
+    wait: true
   chart:
     spec:
       chart: longhorn
@@ -25,7 +33,6 @@ spec:
         name: longhorn
         namespace: flux-system
       version: "1.9.x"
-  wait: true
   interval: 30m
   timeout: 15m
   values:
