@@ -12,7 +12,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: open-telemetry-release
-  namespace: monitoring
+  namespace: flux-system
 spec:
   interval: 30m
   retryInterval: 1m
