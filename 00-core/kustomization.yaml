@@ -1,0 +1,7 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./00-core/01_kube-vip
+  - ./00-core/02_eso
+  - ./00-core/03_kyverno
+  - ./00-core/04_longhorn
