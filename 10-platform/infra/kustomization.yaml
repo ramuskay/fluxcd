@@ -5,5 +5,4 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./opentelemetry
-  - ./signoz
+  - ./kured/ks.yaml
