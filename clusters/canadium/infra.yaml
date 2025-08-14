@@ -9,7 +9,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: apps
+    name: flux-system
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -23,7 +23,7 @@ spec:
   wait: true
   sourceRef:
     kind: GitRepository
-    name: apps
+    name: flux-system
   dependsOn:
     - name: core
 ---
@@ -39,6 +39,6 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: apps
+    name: flux-system
   dependsOn:
     - name: platform
