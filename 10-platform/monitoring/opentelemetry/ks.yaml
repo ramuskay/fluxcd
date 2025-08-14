@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: opentelemetry-release
+  name: otel-release
   namespace: flux-system
 spec:
   path: "./10-platform/monitoring/opentelemetry/release"
@@ -17,7 +17,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: opentelemetry-config
+  name: otel-config
   namespace: flux-system
 spec:
   path: "./10-platform/monitoring/opentelemetry/app"
@@ -29,4 +29,4 @@ spec:
   retryInterval: 1m
   timeout: 15m
   dependsOn:
-    - name: opentelemetry-release
+    - name: otel-release
