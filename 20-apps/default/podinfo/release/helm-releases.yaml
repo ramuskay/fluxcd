@@ -23,9 +23,11 @@ spec:
   install:
     remediation:
       retries: 3
+    wait: true
   upgrade:
     remediation:
       retries: 3
+    wait: true
   # Default values
   # https://github.com/stefanprodan/podinfo/blob/master/charts/podinfo/values.yaml
   values:

@@ -19,11 +19,11 @@ spec:
   install:
     remediation:
       retries: 3
-      wait: true
+    wait: true
   upgrade:
     remediation:
       retries: 3
-      wait: true
+    wait: true
   chart:
     spec:
       chart: opentelemetry-operator
