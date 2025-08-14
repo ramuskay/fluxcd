@@ -33,3 +33,7 @@ spec:
   timeout: 15m
   dependsOn:
     - name: kyverno-release
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
