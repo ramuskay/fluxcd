@@ -46,6 +46,7 @@ metadata:
   name: signoz-k8s-infra-release
   namespace: flux-system
 spec:
+  targetNamespace: monitoring
   chart:
     spec:
       chart: k8s-infra

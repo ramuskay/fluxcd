@@ -15,6 +15,7 @@ metadata:
   namespace: flux-system
 spec:
   releaseName: podinfo
+  targetNamespace: default
   chart:
     spec:
       chart: podinfo
