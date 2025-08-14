@@ -25,7 +25,6 @@ spec:
         name: signoz
         namespace: flux-system
   interval: 30m
-  retryInterval: 1m
   timeout: 20m
   values:
     global:
@@ -49,7 +48,6 @@ spec:
         name: signoz
         namespace: flux-system
   interval: 30m
-  retryInterval: 1m
   timeout: 15m
   values:
     global:
