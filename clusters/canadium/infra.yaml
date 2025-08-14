@@ -2,6 +2,7 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: core
+  namespace: flux-system
 spec:
   interval: 10m
   path: "./00-core"
@@ -14,6 +15,7 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: platform
+  namespace: flux-system
 spec:
   interval: 10m
   path: "./10-platform"
@@ -29,6 +31,7 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: apps
+  namespace: flux-system
 spec:
   interval: 10m
   path: "./20-apps"
