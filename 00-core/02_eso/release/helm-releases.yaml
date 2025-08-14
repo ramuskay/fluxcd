@@ -11,7 +11,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: external-secrets
-  namespace: flux-system
+  namespace: external-secrets
 spec:
   interval: 30m
   releaseName: external-secrets
