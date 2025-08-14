@@ -16,7 +16,6 @@ metadata:
 spec:
   releaseName: signoz
   targetNamespace: monitoring
-  createNamespace: true
   chart:
     spec:
       chart: signoz
@@ -27,6 +26,7 @@ spec:
   interval: 30m
   timeout: 20m
   install:
+    createNamespace: true
     remediation:
       retries: 3
   upgrade:
