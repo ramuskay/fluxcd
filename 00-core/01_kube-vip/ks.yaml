@@ -14,3 +14,5 @@ spec:
   interval: 30m #TODO: FIx this interval to keep 1min
   retryInterval: 1m
   timeout: 15m
+  dependsOn:
+    - name: cilium-config

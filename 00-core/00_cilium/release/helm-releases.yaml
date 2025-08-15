@@ -1,0 +1,58 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: cilium
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://helm.cilium.io/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: cilium-release
+  namespace: flux-system
+spec:
+  interval: 30m
+  releaseName: cilium
+  targetNamespace: kube-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: cilium
+      version: 1.18.x
+      sourceRef:
+        kind: HelmRepository
+        name: cilium
+        namespace: flux-system
+  values:
+    l2announcements:
+      enabled: true  # Enables Layer 2 announcements for external IP management
+    externalIPs:
+      enabled: true  # Allows Kubernetes services to bind to IPs outside the cluster (external IPs) on pods (sounds of an edge case to me..).
+    operator:
+      replicas: 1  # Ensures a single replica of the Cilium operator, suitable for small clusters
+      rollOutPods: true  # Ensures smooth rolling updates of Cilium components
+      rollOutCiliumPods: true  # Ensures that Cilium pods are updated properly during upgrades
+    debug:
+      enabled: true  # Enables debug logging for troubleshooting
+    kubeProxyReplacement: true # Enables eBPF-based kube-proxy replacement for better performance
+    native-routing-cidr: 10.42.0.0/16 # Defines the pod network CIDR for native routing.
+    wait: false # Disables waiting for all Cilium pods to be fully ready before the CLI exits.
+    ipam:
+      mode: kubernetes # Uses Kubernetes API to assign pod IPs instead of Cilium-managed pool.
+      operator:
+        clusterPoolIPv4PodCIDRList: "10.42.0.0/16" # Specifies the CIDRs that Cilium uses to allocate pod IPs if it manages them. Is it overridden by the native-routing-cidr ?
+    serviceMesh: # Enables Cilium Service Mesh (L7 policies, Envoy integration).
+      enabled: true
+    gatewayAPI: # Enables support for Gateway API resources.
+      enabled: true
+    loadBalancer: # Enables the Cilium LoadBalancer feature for services of type LoadBalancer. Otherwise it won't be managed by Cilium.
+      enabled: true
+      acceleration: "best-effort"  # or "disabled" or "generic"
+
