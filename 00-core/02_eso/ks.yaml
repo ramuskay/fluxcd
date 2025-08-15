@@ -21,6 +21,7 @@ spec:
 # kind: Kustomization
 # metadata:
 #   name: eso-config
+  # namespace: flux-system
 # spec:
 #   path: "./00-core/02_eso/app"
 #   prune: true
