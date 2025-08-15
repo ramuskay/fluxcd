@@ -9,20 +9,20 @@ spec:
   cron: '0 23 * * 6'
   retain: 2
   parameters:
-    volume-backup-policy: if-not-present
+    volume-backup-policy: never
 ---
 apiVersion: longhorn.io/v1beta2
 kind: RecurringJob
 metadata:
-  name: recurring-snapshot-delete
+  name: recurring-backup
   namespace: longhorn-system
 spec:
-  cron: "*/15 * * * *"
-  task: "snapshot-delete"
+  cron: "0 2 * * *"
+  task: "backup"
   groups:
     - default
-  retain: 5
-  concurrency: 0
+  retain: 7
+  concurrency: 1
 ---
 apiVersion: longhorn.io/v1beta2
 kind: RecurringJob
