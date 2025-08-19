@@ -1,0 +1,31 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: x3gallery
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: https://ramuskay.github.io/hc-x3gallery/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: x3gallery
+  namespace: flux-system
+spec:
+  releaseName: x3gallery
+  targetNamespace: default
+  chart:
+    spec:
+      chart: x3gallery
+      sourceRef:
+        kind: HelmRepository
+        name: x3gallery
+  interval: 20m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
