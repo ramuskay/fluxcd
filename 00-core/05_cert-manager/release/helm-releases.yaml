@@ -52,6 +52,7 @@ metadata:
 spec:
   dependsOn:
     - name: cert-manager-release
+      namespace: flux-system   # <--- namespace of the dependency
   install:
     createNamespace: true
   targetNamespace: cert-manager
