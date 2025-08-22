@@ -4,7 +4,7 @@ metadata:
   name: cert-manager-release
   namespace: flux-system
 spec:
-  path: "./00-core/04_cert-manager/release"
+  path: "./00-core/05_cert-manager/release"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -21,7 +21,7 @@ metadata:
   name: cert-manager-config
   namespace: flux-system
 spec:
-  path: "./00-core/04_cert-manager/app"
+  path: "./00-core/05_cert-manager/app"
   prune: true
   sourceRef:
     kind: GitRepository
