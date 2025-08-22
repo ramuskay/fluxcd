@@ -13,4 +13,4 @@ spec:
   retryInterval: 1m
   timeout: 15m
   dependsOn:
-    - name: gatewayapi-release
+    - name: gateway-release
