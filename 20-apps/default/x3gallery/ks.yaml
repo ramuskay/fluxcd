@@ -20,7 +20,7 @@ metadata:
   name: x3gallery-config
   namespace: flux-system
 spec:
-  path: "./10-platform/network/x3gallery/app"
+  path: "./20-apps/default/x3gallery/app"
   prune: true
   sourceRef:
     kind: GitRepository
