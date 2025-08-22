@@ -12,3 +12,5 @@ spec:
   interval: 30m
   retryinterval: 5m
   timeout: 15m
+  dependsOn:
+    - name: kyverno-config
