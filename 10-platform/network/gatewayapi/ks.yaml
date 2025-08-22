@@ -10,7 +10,7 @@ spec:
     kind: GitRepository
     name: flux-system
   interval: 30m
-  retryInterval: 1m
+  retryinterval: 5m
   timeout: 15m
   dependsOn:
     - name: gateway-release
