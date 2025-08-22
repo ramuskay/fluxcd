@@ -9,4 +9,4 @@ resources:
   - 02_eso/ks.yaml
   - 03_kyverno/ks.yaml
   - 04_cert-manager/ks.yaml
-  - 04_longhorn/ks.yaml
+  - 05_longhorn/ks.yaml
