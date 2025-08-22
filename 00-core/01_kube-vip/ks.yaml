@@ -11,8 +11,7 @@ spec:
     kind: GitRepository
     name: flux-system
   wait: true
-  interval: 30m #TODO: FIx this interval to keep 1min
-  retryInterval: 1m
+  interval: 1m
   timeout: 15m
   dependsOn:
     - name: cilium-release
