@@ -30,16 +30,15 @@ metadata:
 spec:
   interval: 30m
   releaseName: cert-manager
-  targetNamespace: kube-system
+  install:
+    createNamespace: true
+  targetNamespace: cert-manager
   chartRef:
     kind: OCIRepository
     name: cert-manager
   values:
     crds:
       enabled: true
-    prometheus:
-      servicemonitor:
-        enabled: true
     config:
       apiVersion: controller.config.cert-manager.io/v1alpha1
       kind: ControllerConfiguration
