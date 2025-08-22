@@ -30,4 +30,4 @@ spec:
   interval: 5m
   timeout: 15m
   dependsOn:
-    - name: gateway-release
+    - name: gatewayapi-release
