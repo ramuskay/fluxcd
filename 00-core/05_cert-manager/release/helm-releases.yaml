@@ -50,6 +50,8 @@ metadata:
   name: cm-webhook-ovh
   namespace: cert-manager
 spec:
+  dependsOn:
+    - name: cert-manager-release
   install:
     createNamespace: true
   targetNamespace: cert-manager
