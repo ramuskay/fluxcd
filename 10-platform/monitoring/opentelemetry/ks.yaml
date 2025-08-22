@@ -11,7 +11,7 @@ spec:
     name: flux-system
   wait: true
   interval: 30m
-  retryinterval: 5m
+  retryInterval: 5m
   timeout: 15m
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -26,7 +26,7 @@ spec:
     kind: GitRepository
     name: flux-system
   interval: 30m
-  retryinterval: 5m
+  retryInterval: 5m
   timeout: 15m
   dependsOn:
     - name: otel-release

@@ -28,7 +28,7 @@ metadata:
   name: cert-manager-release
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 5m
   releaseName: cert-manager
   install:
     createNamespace: true
@@ -56,7 +56,7 @@ spec:
   install:
     createNamespace: true
   targetNamespace: cert-manager
-  interval: 30m
+  interval: 5m
   chart:
     spec:
       chart: cert-manager-webhook-ovh
