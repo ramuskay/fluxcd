@@ -28,4 +28,4 @@ spec:
   interval: 1m
   timeout: 15m
   dependsOn:
-    - name: cert-manager-config
+    - name: cilium-release

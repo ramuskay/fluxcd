@@ -4,7 +4,7 @@ metadata:
   name: longhorn-release
   namespace: flux-system
 spec:
-  path: "./00-core/04_longhorn/release"
+  path: "./00-core/05_longhorn/release"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -13,7 +13,7 @@ spec:
   interval: 1m
   timeout: 15m
   dependsOn:
-    - name: kyverno-config
+    - name: gateway-release
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -21,7 +21,7 @@ metadata:
   name: longhorn-config
   namespace: flux-system
 spec:
-  path: "./00-core/04_longhorn/app"
+  path: "./00-core/05_longhorn/app"
   prune: true
   sourceRef:
     kind: GitRepository
