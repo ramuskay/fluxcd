@@ -5,31 +5,31 @@ metadata:
 spec:
   controllerName: io.cilium/gateway-controller
 ---
-apiVersion: "cilium.io/v2alpha1"
-kind: CiliumLoadBalancerIPPool
-metadata:
-  name: "exposed-pool"
-  namespace: kube-system
-spec:
-  blocks:
-  - cidr: "192.168.68.128/29"
----
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: my-gateway
+  name: k3s-router
+  namespace: network
+  annotations:
+    cert-manager.io/cluster-issuer: le-prod
 spec:
   gatewayClassName: cilium
   listeners:
   - allowedRoutes:
       namespaces:
         from: All
-    name: web-gw
+    name: http
+    hostname: '*.beerus.fr'
     port: 80
     protocol: HTTP
-  - allowedRoutes:
-      namespaces:
-        from: All
-    name: web-gw-secure
+  - name: https
+    hostname: '*.beerus.fr'
     port: 443
     protocol: HTTPS
+    tls:
+      mode: Terminate
+      certificateRefs:
+        - name: wildcard-beerus
+    allowedRoutes:
+      namespaces:
+        from: All

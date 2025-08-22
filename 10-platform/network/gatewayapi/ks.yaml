@@ -12,3 +12,20 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 15m
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: gatewayapi-config
+  namespace: flux-system
+spec:
+  path: "./10-platform/network/gatewayapi/app"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 30m
+  retryInterval: 1m
+  timeout: 15m
+  dependsOn:
+    - name: gatewayapi-release
