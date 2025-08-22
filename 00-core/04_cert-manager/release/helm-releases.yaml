@@ -12,6 +12,16 @@ spec:
     tag: v1.18.2
   url: oci://quay.io/jetstack/charts/cert-manager
 ---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: cert-manager-webhook-ovh-charts
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://aureq.github.io/cert-manager-webhook-ovh/
+
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -26,7 +36,7 @@ spec:
     name: cert-manager
   values:
     crds:
-      enable: true
+      enabled: true
     prometheus:
       servicemonitor:
         enabled: true
@@ -34,3 +44,41 @@ spec:
       apiVersion: controller.config.cert-manager.io/v1alpha1
       kind: ControllerConfiguration
       enableGatewayAPI: true
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cm-webhook-ovh
+  namespace: cert-manager
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: cert-manager-webhook-ovh
+      sourceRef:
+        kind: HelmRepository
+        name: cert-manager-webhook-ovh-charts
+        namespace: flux-system
+      version: 0.7.x
+  values:
+    groupName: "ovh.example"
+    configVersion: "0.0.1"
+    issuers:
+      - name: le-prod
+        create: true
+        kind: ClusterIssuer
+        namespace: default
+        cnameStrategy: None
+        acmeServerUrl: https://acme-v02.api.letsencrypt.org/directory
+        email: aurel@beerus.fr
+        ovhEndpointName: ovh-eu
+        ovhAuthenticationRef:
+          applicationKeyRef:
+            name: ovh-credentials
+            key: applicationKey
+          applicationSecretRef:
+            name: ovh-credentials
+            key: applicationSecret
+          consumerKeyRef:
+            name: ovh-credentials
+            key: consumerKey
