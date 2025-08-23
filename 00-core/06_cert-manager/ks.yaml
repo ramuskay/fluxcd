@@ -31,3 +31,7 @@ spec:
   timeout: 15m
   dependsOn:
     - name: gatewayapi-release
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
