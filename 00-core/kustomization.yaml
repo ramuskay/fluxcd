@@ -4,10 +4,10 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - 00_cilium/ks.yaml
-  - 01_kube-vip/ks.yaml
-  - 02_eso/ks.yaml
-  - 03_kyverno/ks.yaml
-  - 05_cert-manager/ks.yaml
-  - 04_gatewayapi/ks.yaml
-  - 04_longhorn/ks.yaml
+  - 00_gatewayapi/ks.yaml
+  - 01_cilium/ks.yaml
+  - 02_kube-vip/ks.yaml
+  - 03_eso/ks.yaml
+  - 04_kyverno/ks.yaml
+  - 05_longhorn/ks.yaml
+  - 06_cert-manager/ks.yaml

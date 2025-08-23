@@ -1,17 +1,13 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: kube-vip-config
+  name: gatewayapi-release
   namespace: flux-system
 spec:
-  path: "./00-core/01_kube-vip/app"
+  path: "./00-core/04_gatewayapi/release"
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  wait: true
   interval: 5m
   timeout: 15m
-  dependsOn:
-    - name: cilium-release

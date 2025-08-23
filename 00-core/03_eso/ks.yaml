@@ -4,7 +4,7 @@ metadata:
   name: eso-release
   namespace: flux-system
 spec:
-  path: "./00-core/02_eso/release"
+  path: "./00-core/03_eso/release"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -22,7 +22,7 @@ spec:
 #   name: eso-config
   # namespace: flux-system
 # spec:
-#   path: "./00-core/02_eso/app"
+#   path: "./00-core/03_eso/app"
 #   prune: true
 #   sourceRef:
 #     kind: GitRepository
