@@ -4,7 +4,7 @@ metadata:
   name: gatewayapi-release
   namespace: flux-system
 spec:
-  path: "./00-core/04_gatewayapi/release"
+  path: "./00-core/00_gatewayapi/release"
   prune: true
   sourceRef:
     kind: GitRepository
