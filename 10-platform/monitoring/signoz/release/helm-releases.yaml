@@ -72,5 +72,16 @@ spec:
     presets:
       otlpExporter:
         enabled: true
+      hostMetrics:
+        enabled: true
+        collectionInterval: 60s
+      logsCollection:
+        enabled: true
       loggingExporter:
         enabled: false
+      kubeletMetrics:
+        enabled: true
+        collectionInterval: 60s
+      kubernetesAttributes:
+        enabled: true
+        passthrough: true
