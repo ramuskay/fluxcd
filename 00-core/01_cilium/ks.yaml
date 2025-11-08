@@ -12,8 +12,8 @@ spec:
   wait: true
   interval: 5m
   timeout: 15m
-  dependsOn:
-    - name: gatewayapi-release
+  # dependsOn:
+  #   - name: gatewayapi-release
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
