@@ -14,4 +14,4 @@ spec:
   interval: 5m
   timeout: 15m
   dependsOn:
-    - name: cilium-release
+    - name: gatewayapi-release
