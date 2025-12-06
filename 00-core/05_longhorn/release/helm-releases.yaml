@@ -30,7 +30,7 @@ spec:
         kind: HelmRepository
         name: longhorn
         namespace: flux-system
-      version: "1.9.x"
+      version: "1.10.x"
   interval: 30m
   timeout: 15m
   values:
