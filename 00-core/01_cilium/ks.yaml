@@ -1,19 +1,19 @@
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: cilium-release
-  namespace: flux-system
-spec:
-  path: "./00-core/01_cilium/release"
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  wait: true
-  interval: 5m
-  timeout: 15m
-  dependsOn:
-    - name: gatewayapi-release
+# apiVersion: kustomize.toolkit.fluxcd.io/v1
+# kind: Kustomization
+# metadata:
+#   name: cilium-release
+#   namespace: flux-system
+# spec:
+#   path: "./00-core/01_cilium/release"
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-system
+#   wait: true
+#   interval: 5m
+#   timeout: 15m
+#   dependsOn:
+#     - name: gatewayapi-release
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -30,4 +30,5 @@ spec:
   interval: 5m
   timeout: 15m
   dependsOn:
-    - name: cilium-release
+    - name: gatewayapi-release
+    # - name: cilium-release
