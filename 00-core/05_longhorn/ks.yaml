@@ -15,6 +15,25 @@ spec:
   dependsOn:
     - name: kyverno-config
 ---
+
+# Since Flux doesn't have a way to wait a bit before applying the ks, I use this dummy one
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: wait-2min-longhorn
+  namespace: flux-system
+spec:
+  interval: 2m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: "./00-core/05_longhorn/dummy"
+  prune: false
+  wait: true
+  dependsOn:
+    - name: longhorn-release
+
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -27,10 +46,8 @@ spec:
     kind: GitRepository
     name: flux-system
   wait: true
-  retry:
-    interval: 1m
-    limit: 10
   interval: 5m
+  retryInterval: 5m
   timeout: 25m
   dependsOn:
-    - name: longhorn-release
+    - name: wait-2min-longhorn
