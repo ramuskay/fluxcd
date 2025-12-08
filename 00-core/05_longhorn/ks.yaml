@@ -27,6 +27,9 @@ spec:
     kind: GitRepository
     name: flux-system
   wait: true
+  retry:
+    interval: 1m
+    limit: 10
   interval: 5m
   timeout: 25m
   dependsOn:
