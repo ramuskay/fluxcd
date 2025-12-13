@@ -1,3 +1,12 @@
+# As per best pratices, CoreDNS should have at least 2 replicas for high availability see README on longhorn folder
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coredns
+  namespace: kube-system
+spec:
+  replicas: 2
 ---
 apiVersion: longhorn.io/v1beta2
 kind: RecurringJob
@@ -41,7 +50,7 @@ metadata:
   name: restore-sysbackup
   namespace: longhorn-system
 spec:
-  systemBackup: immediate-system-backup20251212190318 #This value is changed automatically by automation when rebuilding the cluster. In nominal state never reapplied
+  systemBackup: immediate-system-backup20251212205550 #This value is changed automatically by automation when rebuilding the cluster. In nominal state never reapplied
 # This job waits for the SystemRestore to complete
 # It is to ensure that the restore process has finished before proceeding with other deployments relying on PV
 # Thanks to wait: true, FluxCD will wait for Completed status on the job before proceeding

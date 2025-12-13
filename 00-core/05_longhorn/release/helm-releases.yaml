@@ -34,6 +34,8 @@ spec:
   interval: 30m
   timeout: 15m
   values:
+    defaultSettings:
+      storageMinimalAvailablePercentage: 10
     installCRDs: true
     defaultBackupStore:
       backupTarget: nfs://192.168.0.15:/volume1/longhorn-backups
