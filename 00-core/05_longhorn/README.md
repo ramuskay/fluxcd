@@ -1,3 +1,10 @@
+# Best Practices
+
+- Scale up coreDNS to 2 pods
+- Reduce MinimalAvailablePercentage	to 10% (default is 25%) due to dedicated disk
+
+Sources : https://longhorn.io/docs/1.10.1/best-practices
+
 # SystemBackup strategy
 
 1. Always

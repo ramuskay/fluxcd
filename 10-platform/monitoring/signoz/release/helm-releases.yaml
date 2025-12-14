@@ -67,7 +67,7 @@ spec:
       cloud: others
       clusterName: canadium
       deploymentEnvironment: production
-    otelCollectorEndpoint: signoz-release-otel-collector.monitoring.svc.cluster.local:4317
+    otelCollectorEndpoint: signoz-otel-collector.monitoring.svc.cluster.local:4317
     otelInsecure: true
     presets:
       otlpExporter:

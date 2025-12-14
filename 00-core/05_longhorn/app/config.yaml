@@ -1,3 +1,12 @@
+# As per best pratices, CoreDNS should have at least 2 replicas for high availability see README on longhorn folder
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coredns
+  namespace: kube-system
+spec:
+  replicas: 2
 ---
 apiVersion: longhorn.io/v1beta2
 kind: RecurringJob
