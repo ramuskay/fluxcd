@@ -36,6 +36,8 @@ spec:
   values:
     defaultSettings:
       storageMinimalAvailablePercentage: 10
+      storageReservedPercentageForDefaultDisk: 10
+      allowCollectingLonghornUsageMetrics: false
     installCRDs: true
     defaultBackupStore:
       backupTarget: nfs://192.168.0.15:/volume1/longhorn-backups
