@@ -51,6 +51,6 @@ spec:
           name: config-writable
     extraVolumeMounts:
       - name: config-writable
-        mountPath: /config/gatus-sidecarr
+        mountPath: /config/gatus-sidecar
         existingClaim: gatus-sidecar-pvc
         readOnly: false
