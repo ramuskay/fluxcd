@@ -43,4 +43,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: gatus-sidecar
-  namespace: monitoring=
+  namespace: monitoring
