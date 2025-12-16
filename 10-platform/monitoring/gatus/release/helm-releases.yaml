@@ -1,0 +1,57 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: gatus
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: https://twin.github.io/helm-charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: gatus-release
+  namespace: flux-system
+spec:
+  targetNamespace: monitoring
+  interval: 30m
+  timeout: 15m
+  chart:
+    spec:
+      chart: gatus
+      sourceRef:
+        kind: HelmRepository
+        name: gatus
+        namespace: flux-system
+  values:
+    serviceAccount:
+      create: false
+      name: "gatus-sidecar"
+      annotations: {}
+      autoMount: true
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: 65534
+      runAsGroup: 65534
+      readOnlyRootFilesystem: true
+    env:
+      GATUS_CONFIG_PATH: /config
+      GATUS_DELAY_START_SECONDS: 5
+    sidecarContainers:
+      gatus-sidecar:
+        args:
+        - --auto-httproute
+        - --output=/config/gatus-config.yaml
+        image: ghcr.io/home-operations/gatus-sidecar:latest
+        imagePullPolicy: Always
+        name: gatus-sidecar
+        resources: {}
+        volumeMounts:
+        - mountPath: /config/
+          name: config-writable
+    extraVolumeMounts:
+      - name: config-writable
+        mountPath: /config/gatus-sidecar
+        existingClaim: gatus-sidecar-pvc
+        readOnly: false

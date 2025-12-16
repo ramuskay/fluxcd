@@ -7,3 +7,4 @@ resources:
   # Flux-Kustomizations
   - ./opentelemetry/ks.yaml
   - ./signoz/ks.yaml
+  - ./gatus/ks.yaml
