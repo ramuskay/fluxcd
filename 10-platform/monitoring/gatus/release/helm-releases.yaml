@@ -45,7 +45,6 @@ spec:
         - --output=/config/gatus-config.yaml
         image: ghcr.io/home-operations/gatus-sidecar:latest
         imagePullPolicy: Always
-        name: gatus-sidecar
         resources: {}
         volumeMounts:
         - mountPath: /config/
