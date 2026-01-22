@@ -25,15 +25,6 @@ spec:
         name: gatus
         namespace: flux-system
   values:
-    endpoints:
-      - name: website
-        url: "https://twin.sh/health"
-        client:
-          insecure: false
-          ignore-redirect: false
-          timeout: 10s
-        conditions:
-          - "[STATUS] == 200"
     serviceAccount:
       create: false
       name: "gatus-sidecar"
@@ -46,7 +37,7 @@ spec:
       readOnlyRootFilesystem: true
     env:
       GATUS_CONFIG_PATH: /config
-      GATUS_DELAY_START_SECONDS: 5
+      GATUS_DELAY_START_SECONDS: 6
     sidecarContainers:
       gatus-sidecar:
         args:
