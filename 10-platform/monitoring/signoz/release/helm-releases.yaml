@@ -54,6 +54,7 @@ spec:
         kind: HelmRepository
         name: signoz
         namespace: flux-system
+      version: "0.103.0"
   interval: 30m
   timeout: 15m
   install:

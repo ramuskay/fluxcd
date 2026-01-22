@@ -1,3 +1,7 @@
+# TO know when instancing the cluster
+
+- GatewayAPI may not detect cilium ip pool, need to be restarted 
+
 # flux2-kustomize-helm-example.
 
 [![test](https://github.com/fluxcd/flux2-kustomize-helm-example/workflows/test/badge.svg)](https://github.com/fluxcd/flux2-kustomize-helm-example/actions)
