@@ -53,12 +53,11 @@ spec:
       node:
         fsSelector: 'fstype=~"ext[234]|btrfs|xfs|zfs"'
     alertmanager:
-      tplConfig: true
-      # config:
-      #   receivers:
-      #   - name: discord
-      #     discord_configs:
-      #     - webhook_url: "aaa"
+      config:
+        receivers:
+        - name: discord
+          discord_configs:
+          - webhook_url: "aaa"
     additionalPrometheusRulesMap:
       dockerhub-rules:
         groups:
