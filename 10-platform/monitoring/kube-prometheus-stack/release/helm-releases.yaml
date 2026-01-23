@@ -58,7 +58,7 @@ spec:
         receivers:
         - name: discord
           discord_configs:
-          - webhook_url: {{ .Values.discord.url }}
+          - webhook_url: "{{ .Values.discord.url }}"
     additionalPrometheusRulesMap:
       dockerhub-rules:
         groups:
