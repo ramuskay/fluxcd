@@ -2,10 +2,10 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: otel-prereq
+  name: kube-prometheus-stack-prereq
   namespace: flux-system
 spec:
-  path: "./10-platform/monitoring/opentelemetry/app"
+  path: "./10-platform/monitoring/kube-prometheus-stack/app"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -18,10 +18,10 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: otel-release
+  name: kube-prometheus-stack-release
   namespace: flux-system
 spec:
-  path: "./10-platform/monitoring/opentelemetry/release"
+  path: "./10-platform/monitoring/kube-prometheus-stack/release"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -31,4 +31,4 @@ spec:
   retryInterval: 5m
   timeout: 15m
   dependsOn:
-    - name: otel-prereq
+    - name: kube-prometheus-stack-prereq
