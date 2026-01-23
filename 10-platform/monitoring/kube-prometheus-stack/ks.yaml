@@ -1,0 +1,34 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: otel-prereq
+  namespace: flux-system
+spec:
+  path: "./10-platform/monitoring/opentelemetry/app"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 30m
+  retryInterval: 5m
+  targetNamespace: monitoring
+  timeout: 15m
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: otel-release
+  namespace: flux-system
+spec:
+  path: "./10-platform/monitoring/opentelemetry/release"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  wait: true
+  interval: 30m
+  retryInterval: 5m
+  timeout: 15m
+  dependsOn:
+    - name: otel-prereq

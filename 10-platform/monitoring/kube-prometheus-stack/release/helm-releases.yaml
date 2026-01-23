@@ -1,0 +1,86 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kube-prometheus-stack
+  namespace: flux-system
+spec:
+  interval: 5m
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: v81.2.1
+  url: oci://ghcr.io/prometheus-community/charts/kube-prometheus-stack
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack-release
+  namespace: flux-system
+spec:
+  interval: 5m
+  releaseName: kube-prometheus-stack
+  install:
+    createNamespace: true
+  targetNamespace: monitoring
+  chartRef:
+    kind: OCIRepository
+    name: kube-prometheus-stack
+  values:
+    kubeEtcd:
+      enabled: false
+    kubeApiServer:
+      enabled: false
+    kubeProxy:
+      enabled: false
+    kubeScheduler:
+      jobNameOverride: "k3s-server"
+    kubeControllerManager:
+      jobNameOverride: "k3s-server"
+    prometheus:
+      prometheusSpec:
+        retention: 30d
+        retentionSize: "50GiB"
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 50Gi
+    defaultRules:
+      node:
+        fsSelector: 'fstype=~"ext[234]|btrfs|xfs|zfs"'
+    alertmanager:
+      config:
+        receivers:
+        - name: discord
+          discord_configs:
+          - webhook_url: https://discord.com/api/webhooks/1464359524780605471/cZtMNLn-eKsUj_5cCiPumHisIxWyTOYesHHhiV3EFxX8Y7m3Bzn4JSAEWgn2qtQbyKgF
+    additionalPrometheusRulesMap:
+      dockerhub-rules:
+        groups:
+          - name: dockerhub
+            rules:
+              - alert: DockerhubRateLimitRisk
+                annotations:
+                  summary: There are {{ $value }} containers pulling from Dockerhub. This may lead to rate limiting.
+                expr: count(time() - container_last_seen{image=~"(docker.io).*",container!=""} < 30) > 100
+                labels:
+                  severity: critical
+      oom-rules:
+        groups:
+          - name: oom
+            rules:
+              - alert: OomKilled
+                annotations:
+                  summary: Container {{ $labels.container }} in pod {{ $labels.namespace }}/{{ $labels.pod }} has been OOMKilled {{ $value }} times in the last 10 minutes.
+                expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total offset 10m >= 1) and ignoring (reason) min_over_time(kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m]) == 1
+                labels:
+                  severity: critical
+  valuesFrom:
+    - kind: Secret
+      name: discord_url
+      valuesKey: password
+      targetPath: discord.url
