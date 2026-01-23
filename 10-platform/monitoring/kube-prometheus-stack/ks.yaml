@@ -13,6 +13,10 @@ spec:
   interval: 30m
   retryInterval: 5m
   timeout: 15m
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -31,7 +35,3 @@ spec:
   timeout: 15m
   dependsOn:
     - name: kube-prometheus-stack-prereq
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
