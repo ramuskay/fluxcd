@@ -29,8 +29,9 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  dependsOn:
-    - name: core
+  # FIXIT : To speed up during debug
+  # dependsOn:
+  #   - name: core
   decryption:
     provider: sops
     secretRef:
