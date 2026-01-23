@@ -82,6 +82,6 @@ spec:
                   severity: critical
   valuesFrom:
     - kind: Secret
-      name: discord_url
+      name: discord-url
       valuesKey: password
       targetPath: discord.url
