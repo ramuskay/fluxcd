@@ -52,29 +52,13 @@ spec:
     defaultRules:
       node:
         fsSelector: 'fstype=~"ext[234]|btrfs|xfs|zfs"'
-    # alertmanager:
-      # config:
-      #   global:
-      #     resolve_timeout: 5m
-      #   route:
-      #     group_by: ['alertname']
-      #     group_wait: 30s
-      #     group_interval: 5m
-      #     repeat_interval: 1h
-      #     receiver: "default-receiver"
-      #   receivers:
-      #     - name: "default-receiver"
-      #       # Example: Email
-      #       email_configs:
-      #         - to: "team@example.com"
-      #           from: "alertmanager@example.com"
-      #           smarthost: "smtp.example.com:587"
-      #           auth_username: "alertmanager@example.com"
-      #           auth_password: "password"
-      #     - name: "discord"
-      #       discord_configs:
-      #         - webhook_url: "https://discord.com/api/webhooks/xxxx/xxxx"
-      #           send_resolved: true
+    alertmanager:
+      tplConfig: true
+      config:
+        receivers:
+        - name: discord
+          discord_configs:
+          - webhook_url: "{{ .Values.discord.url }}"
     additionalPrometheusRulesMap:
       dockerhub-rules:
         groups:
