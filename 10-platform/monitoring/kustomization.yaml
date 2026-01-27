@@ -6,6 +6,6 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./opentelemetry/ks.yaml
-  - ./signoz/ks.yaml
+  # - ./signoz/ks.yaml
   - ./gatus/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
