@@ -1,0 +1,81 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: victoria-logs-single
+  namespace: flux-system
+spec:
+  interval: 15m
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.11.25
+  url: oci://ghcr.io/victoriametrics/helm-charts/victoria-logs-single
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: victoria-logs-collector
+  namespace: flux-system
+spec:
+  interval: 15m
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.2.8
+  url: oci://ghcr.io/victoriametrics/helm-charts/victoria-logs-collector
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: victoria-logs-single-release
+  namespace: flux-system
+spec:
+  releaseName: victoria-logs-single-release
+  targetNamespace: monitoring
+  chartRef:
+    kind: OCIRepository
+    name: victoria-logs-single
+    namespace: flux-system
+  interval: 30m
+  values:
+    server:
+      replicaCount: 2
+      route:
+        enabled: true
+        hostnames:
+          - logs.beerus.fr
+        parentRefs:
+          - group: gateway.networking.k8s.io
+            kind: Gateway
+            name: k3s-router
+            namespace: network
+        extraRules:
+          - matches:
+              - path:
+                  type: Exact
+                  value: /
+            filters:
+              - type: RequestRedirect
+                requestRedirect:
+                  path:
+                    type: ReplaceFullPath
+                    replaceFullPath: /select/vmui/
+                  statusCode: 302
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: victoria-logs-collector-release
+  namespace: flux-system
+spec:
+  targetNamespace: monitoring
+  chartRef:
+    kind: OCIRepository
+    name: victoria-logs-collector
+    namespace: flux-system
+  interval: 30m
+  timeout: 15m
