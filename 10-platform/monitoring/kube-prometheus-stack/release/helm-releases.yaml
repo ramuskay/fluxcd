@@ -59,10 +59,10 @@ spec:
         size: 20Gi
         finalizers:
           - kubernetes.io/pvc-protection
-      # admin:
-      #   existingSecret: grafana-cred
-      #   userKey: admin-user
-      #   passwordKey: admin-password
+      admin:
+        existingSecret: grafana-cred
+        userKey: admin-user
+        passwordKey: admin-password
     defaultRules:
       node:
         fsSelector: 'fstype=~"ext[234]|btrfs|xfs|zfs"'
