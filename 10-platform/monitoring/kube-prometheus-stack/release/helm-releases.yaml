@@ -28,6 +28,16 @@ spec:
     kind: OCIRepository
     name: kube-prometheus-stack
   values:
+  route:
+    main:
+      enabled: true
+      hostnames:
+        - monitoring.beerus.fr
+      parentRefs:
+      - group: gateway.networking.k8s.io
+        kind: Gateway
+        name: k3s-router
+        namespace: network
     kubeEtcd:
       enabled: false
     kubeApiServer:
