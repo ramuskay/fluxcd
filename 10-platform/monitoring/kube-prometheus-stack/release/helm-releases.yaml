@@ -39,16 +39,6 @@ spec:
     kubeControllerManager:
       jobNameOverride: "k3s-server"
     prometheus:
-      route:
-          main:
-            enabled: true
-            hostnames:
-              - monitoring.beerus.fr
-            parentRefs:
-            - group: gateway.networking.k8s.io
-              kind: Gateway
-              name: k3s-router
-              namespace: network
       prometheusSpec:
         retention: 30d
         retentionSize: "50GiB"

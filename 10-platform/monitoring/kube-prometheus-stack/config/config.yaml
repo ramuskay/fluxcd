@@ -1,0 +1,21 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+spec:
+  hostnames:
+  - monitoring.beerus.fr
+  parentRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: k3s-router
+    namespace: network
+  rules:
+  - backendRefs:
+    - group: ""
+      kind: Service
+      name: kube-prometheus-stack-grafana
+      port: 80
+      weight: 1
+    matches:
+    - path:
+        type: PathPrefix
+        value: /
