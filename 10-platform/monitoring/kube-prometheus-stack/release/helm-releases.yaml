@@ -60,7 +60,7 @@ spec:
         finalizers:
           - kubernetes.io/pvc-protection
       admin:
-        existingSecret: "grafana-cred"
+        existingSecret: grafana-cred
         userKey: admin-user
         passwordKey: admin-password
     defaultRules:
