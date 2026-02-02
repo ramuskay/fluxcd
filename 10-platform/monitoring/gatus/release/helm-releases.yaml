@@ -81,8 +81,8 @@ spec:
     - kind: Secret
       name: gatus-pushover
       valuesKey: user-token
-      targetPath: pushover.user.token
+      targetPath: pushover.user-token
     - kind: Secret
       name: gatus-pushover
       valuesKey: application-token
-      targetPath: pushover.application.token
+      targetPath: pushover.application-token
