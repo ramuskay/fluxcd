@@ -20,11 +20,22 @@ spec:
   chart:
     spec:
       chart: gatus
+      version: 1.4.5
       sourceRef:
         kind: HelmRepository
         name: gatus
         namespace: flux-system
   values:
+    persistence:
+      enabled: true
+      storageClassName: longhorn
+      size: 1Gi
+    config:
+      storage:
+        type: sqlite
+        path: /data/data.db
+        maximum-number-of-results: 1000
+        maximum-number-of-events: 500
     serviceAccount:
       create: false
       name: "gatus-sidecar"
@@ -43,7 +54,7 @@ spec:
         args:
         - --auto-httproute
         - --output=/config/gatus-config.yaml
-        image: ghcr.io/home-operations/gatus-sidecar:latest
+        image: ghcr.io/home-operations/gatus-sidecar:0.0.12
         imagePullPolicy: Always
         resources: {}
         volumeMounts:
