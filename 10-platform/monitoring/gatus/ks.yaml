@@ -30,6 +30,10 @@ spec:
   timeout: 15m
   dependsOn:
     - name: gatus-prereq
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
