@@ -31,6 +31,7 @@ spec:
       storageClassName: longhorn
       size: 1Gi
     config:
+      metrics: true
       storage:
         type: sqlite
         path: /data/data.db

@@ -53,7 +53,7 @@ spec:
         parentRefs:
           - group: gateway.networking.k8s.io
             kind: Gateway
-            name: k3s-router
+            name: cilium-external
             namespace: network
         extraRules:
           - matches:

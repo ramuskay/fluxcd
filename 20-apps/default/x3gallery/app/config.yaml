@@ -6,7 +6,7 @@ metadata:
   namespace: default
 spec:
   parentRefs:
-    - name: k3s-router
+    - name: cilium-external
       namespace: network
   hostnames:
     - 'test-canadium.beerus.fr'
