@@ -39,8 +39,8 @@ spec:
         maximum-number-of-events: 500
       alerting:
         pushover:
-          application-token: {{ .Values.pushover.application.token }}
-          user-key: {{ .Values.pushover.user.token }}
+          application-token: {{ .Values.pushover.application-token }}
+          user-key: {{ .Values.pushover.user-token }}
           title: "Gatus Alert"
           default-alert:
             description: "health check failed"
