@@ -12,13 +12,12 @@ metadata:
   namespace: network
   annotations:
     cert-manager.io/cluster-issuer: le-prod
+    lbipam.cilium.io/ips: 192.168.69.128
     gatus.home-operations.com/endpoint: |-
       client:
         dns-resolver: tcp://1.1.1.1:53
       group: external
 spec:
-  infrastructure:
-      lbipam.cilium.io/ips: 192.168.69.128
   gatewayClassName: cilium
   listeners:
   - allowedRoutes:
@@ -47,6 +46,7 @@ metadata:
   namespace: network
   annotations:
     cert-manager.io/cluster-issuer: le-prod
+    lbipam.cilium.io/ips: 192.168.69.129
     gatus.home-operations.com/endpoint: |-
       group: internal
       guarded: true
@@ -54,8 +54,6 @@ metadata:
         hide-hostname: true
         hide-url: true
 spec:
-  infrastructure:
-      lbipam.cilium.io/ips: 192.168.69.129
   gatewayClassName: cilium
   listeners:
   - allowedRoutes:
