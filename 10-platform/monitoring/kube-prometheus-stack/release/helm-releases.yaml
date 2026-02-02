@@ -63,6 +63,11 @@ spec:
         existingSecret: grafana-cred
         userKey: admin-user
         passwordKey: admin-password
+      command:
+        - sh
+        - -c
+        - cd /usr/share/grafana; bin/grafana cli admin reset-admin-password
+          $GF_SECURITY_ADMIN_PASSWORD; /run.sh
     defaultRules:
       node:
         fsSelector: 'fstype=~"ext[234]|btrfs|xfs|zfs"'
