@@ -20,7 +20,6 @@ spec:
   chart:
     spec:
       chart: gatus
-      version: 1.4.5
       sourceRef:
         kind: HelmRepository
         name: gatus
@@ -55,7 +54,7 @@ spec:
         args:
         - --auto-httproute
         - --output=/config/gatus-config.yaml
-        image: ghcr.io/home-operations/gatus-sidecar:0.0.12
+        image: ghcr.io/home-operations/gatus-sidecar:latest
         imagePullPolicy: Always
         resources: {}
         volumeMounts:
