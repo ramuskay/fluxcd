@@ -32,8 +32,7 @@ spec:
   # Default values
   # https://github.com/stefanprodan/podinfo/blob/master/charts/podinfo/values.yaml
   values:
-    replicaCount: 2
-    fdfdf: 3
+    replicaCount: fff
     redis:
       enabled: true
       repository: public.ecr.aws/docker/library/redis
