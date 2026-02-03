@@ -85,10 +85,13 @@ spec:
           - user_key: ""
             token: ""
             retry: 30m
+        - name: blackhole
+          webhook_configs:
+            - url: http://127.0.0.1:9
         route:
           receiver: 'pushover'
           routes:
-          - receiver: null
+          - receiver: 'blackhole'
             matchers:
               - alertname = "Watchdog"
           - receiver: 'pushover'
