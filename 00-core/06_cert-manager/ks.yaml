@@ -11,7 +11,7 @@ spec:
     name: flux-system
   wait: true
   interval: 5m
-  timeout: 15m
+  timeout: 5m
   dependsOn:
     - name: cert-manager-config
 ---
@@ -28,7 +28,7 @@ spec:
     name: flux-system
   wait: false
   interval: 5m
-  timeout: 15m
+  timeout: 5m
   dependsOn:
     - name: gatewayapi-release
   decryption:

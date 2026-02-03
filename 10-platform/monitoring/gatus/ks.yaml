@@ -11,7 +11,7 @@ spec:
     name: flux-system
   interval: 30m
   retryInterval: 5m
-  timeout: 15m
+  timeout: 5m
   decryption:
     provider: sops
     secretRef:
@@ -31,7 +31,7 @@ spec:
   wait: true
   interval: 30m
   retryInterval: 5m
-  timeout: 15m
+  timeout: 5m
   dependsOn:
     - name: gatus-prereq
 
@@ -50,6 +50,6 @@ spec:
   wait: true
   interval: 30m
   retryInterval: 5m
-  timeout: 15m
+  timeout: 5m
   dependsOn:
     - name: gatus-release

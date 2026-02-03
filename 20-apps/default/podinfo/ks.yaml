@@ -12,7 +12,7 @@ spec:
   wait: true
   interval: 30m
   retryInterval: 5m
-  timeout: 15m
+  timeout: 5m
   dependsOn:
     - name: podinfo-config
 ---
@@ -29,7 +29,7 @@ spec:
     name: flux-system
   interval: 30m
   retryInterval: 5m
-  timeout: 15m
+  timeout: 5m
   decryption:
     provider: sops
     secretRef:

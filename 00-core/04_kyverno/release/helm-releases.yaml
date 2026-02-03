@@ -32,4 +32,4 @@ spec:
         namespace: flux-system
       version: "2.5.x"
   interval: 30m
-  timeout: 15m
+  timeout: 5m

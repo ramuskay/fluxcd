@@ -15,7 +15,7 @@ metadata:
   namespace: kube-system
 spec:
   interval: 30m
-  timeout: 15m
+  timeout: 5m
   install:
     remediation:
       retries: 3

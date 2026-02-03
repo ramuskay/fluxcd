@@ -12,6 +12,6 @@ spec:
     name: flux-system
   wait: true
   interval: 5m
-  timeout: 15m
+  timeout: 5m
   dependsOn:
     - name: cilium-config
