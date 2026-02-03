@@ -80,7 +80,7 @@ spec:
         receivers:
         - name: pushover
           pushover_configs:
-            user_key: ""
+          - user_key: ""
             token: ""
     additionalPrometheusRulesMap:
       dockerhub-rules:
