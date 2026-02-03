@@ -55,6 +55,7 @@ spec:
             kind: Gateway
             name: cilium-external
             namespace: network
+            sectionName: https
         extraRules:
           - matches:
               - path:

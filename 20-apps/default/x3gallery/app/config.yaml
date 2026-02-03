@@ -8,6 +8,7 @@ spec:
   parentRefs:
     - name: cilium-external
       namespace: network
+      sectionName: https
   hostnames:
     - 'test-canadium.beerus.fr'
   rules:

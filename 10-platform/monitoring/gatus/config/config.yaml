@@ -11,6 +11,7 @@ spec:
     kind: Gateway
     name: cilium-internal
     namespace: network
+    sectionName: https
   rules:
   - backendRefs:
     - group: ""
