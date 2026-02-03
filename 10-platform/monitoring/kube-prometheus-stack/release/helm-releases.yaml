@@ -88,7 +88,7 @@ spec:
           receiver: 'pushover'
           routes:
           - receiver: 'pushover'
-          - receiver: 'null'
+          - receiver: null
             matchers:
               - alertname = "Watchdog"
     additionalPrometheusRulesMap:
