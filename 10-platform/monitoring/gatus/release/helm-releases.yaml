@@ -84,3 +84,9 @@ spec:
       name: gatus-pushover
       valuesKey: application-token
       targetPath: config.alerting.pushover.application-token
+  nameReference:
+    - kind: Secret
+      version: v1
+      fieldSpecs:
+        - path: spec/valuesFrom/name
+          kind: HelmRelease
