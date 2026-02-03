@@ -11,8 +11,7 @@
 # Problem
 
 - Repair PXE which is broken
-- Certif wildcard not working with internal
-
+  - Cilium LB IP taking precedence over real flatcar IP and messed up the kube exposed IP. Need to tweak the k3s config
 
 # Problem Solved
 
@@ -22,3 +21,7 @@
   - Thx to the label reconcile.fluxcd.io/watch: Enabled (see here: https://github.com/fluxcd/flux2/issues/5446)
 - Pushover notif for flux helmrelease
   - Alertmanager is the wayyy
+- Certif wildcard not working with internal
+  - http redirect routes have been created
+  - Annotation has been added on them to avoid gatus fetching them
+  - Needs to have all other routes bind **only** to https

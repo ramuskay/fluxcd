@@ -72,12 +72,16 @@ spec:
       node:
         fsSelector: 'fstype=~"ext[234]|btrfs|xfs|zfs"'
     alertmanager:
-      tplConfig: true
+      additionalLabels:
+        app.kubernetes.io/name: alertmanager
+        app.kubernetes.io/managed-by: prometheus-operator
+      #tplConfig: true
       config:
         receivers:
-        - name: discord
-          discord_configs:
-          - webhook_url: "{{ .Values.discord.url }}"
+        - name: pushover
+          pushover_configs:
+            user_key: ""
+            token: ""
     additionalPrometheusRulesMap:
       dockerhub-rules:
         groups:
@@ -101,6 +105,10 @@ spec:
                   severity: critical
   valuesFrom:
     - kind: Secret
-      name: discord-url
-      valuesKey: password
-      targetPath: discord.url
+      name: gatus-pushover
+      valuesKey: user-token
+      targetPath: alertmanager.config.receivers[0].pushover_configs[0].user_key
+    - kind: Secret
+      name: gatus-pushover
+      valuesKey: application-token
+      targetPath: alertmanager.config.receivers[0].pushover_configs[0].token
