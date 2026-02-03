@@ -74,7 +74,7 @@ spec:
     tls:
       mode: Terminate
       certificateRefs:
-        - name: wildcard-beerus
+        - name: internal-wildcard-beerus
     allowedRoutes:
       namespaces:
         from: All

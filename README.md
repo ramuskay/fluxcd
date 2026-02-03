@@ -7,3 +7,18 @@
 - Kustomization stuck : `flux reconcile kustomization <kustomization> --with-source`
 - Kustomization deleted : Push the yanl Kustomiation manifest with `kubectl apply -f <file>`
 - HelmRelease stuck : `flux reconcile helmrelease <release_name> --force`
+
+# Problem
+
+- Repair PXE which is broken
+- Certif wildcard not working with internal
+
+
+# Problem Solved
+
+- Secret always in flux-system ?
+  - Is ok for now but we should think if it's ok in a security pov
+- Secret change must reload the helm release
+  - Thx to the label reconcile.fluxcd.io/watch: Enabled (see here: https://github.com/fluxcd/flux2/issues/5446)
+- Pushover notif for flux helmrelease
+  - Alertmanager is the wayyy
