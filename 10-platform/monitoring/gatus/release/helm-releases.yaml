@@ -79,7 +79,7 @@ spec:
     - kind: Secret
       name: gatus-pushover
       valuesKey: user-token
-      targetPath: config.alerting.pushover.user-token
+      targetPath: config.alerting.pushover.user-key
     - kind: Secret
       name: gatus-pushover
       valuesKey: application-token
