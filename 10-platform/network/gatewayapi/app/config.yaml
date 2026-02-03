@@ -18,7 +18,7 @@ metadata:
         dns-resolver: tcp://1.1.1.1:53
       group: external
       alerts:
-        - type: slack
+        - type: pushover
 spec:
   gatewayClassName: cilium
   listeners:
@@ -56,7 +56,7 @@ metadata:
         hide-hostname: true
         hide-url: true
       alerts:
-        - type: slack
+        - type: pushover
 spec:
   gatewayClassName: cilium
   listeners:
