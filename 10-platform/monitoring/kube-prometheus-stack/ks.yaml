@@ -25,6 +25,7 @@ metadata:
   namespace: flux-system
 spec:
   path: "./10-platform/monitoring/kube-prometheus-stack/config"
+  targetNamespace: monitoring
   prune: true
   sourceRef:
     kind: GitRepository

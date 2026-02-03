@@ -71,17 +71,26 @@ spec:
     defaultRules:
       node:
         fsSelector: 'fstype=~"ext[234]|btrfs|xfs|zfs"'
+      kubeControllerManager: false
+      kubeSchedulerAlerting: false
+      kubeSchedulerRecording: false
     alertmanager:
       additionalLabels:
         app.kubernetes.io/name: alertmanager
-        app.kubernetes.io/managed-by: prometheus-operator
-      #tplConfig: true
       config:
         receivers:
         - name: pushover
           pushover_configs:
           - user_key: ""
             token: ""
+            retry: 30m
+        route:
+          receiver: 'pushover'
+          routes:
+          - receiver: 'pushover'
+          - receiver: 'null'
+            matchers:
+              - alertname = "Watchdog"
     additionalPrometheusRulesMap:
       dockerhub-rules:
         groups:
