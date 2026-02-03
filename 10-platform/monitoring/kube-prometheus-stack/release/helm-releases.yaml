@@ -71,9 +71,10 @@ spec:
     defaultRules:
       node:
         fsSelector: 'fstype=~"ext[234]|btrfs|xfs|zfs"'
-      kubeControllerManager: false
-      kubeSchedulerAlerting: false
-      kubeSchedulerRecording: false
+      rules:
+        kubeControllerManager: false
+        kubeSchedulerAlerting: false
+        kubeSchedulerRecording: false
     alertmanager:
       additionalLabels:
         app.kubernetes.io/name: alertmanager
@@ -87,10 +88,10 @@ spec:
         route:
           receiver: 'pushover'
           routes:
-          - receiver: 'pushover'
           - receiver: null
             matchers:
               - alertname = "Watchdog"
+          - receiver: 'pushover'
     additionalPrometheusRulesMap:
       dockerhub-rules:
         groups:
