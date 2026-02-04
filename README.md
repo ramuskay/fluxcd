@@ -12,6 +12,7 @@
 
 - Repair PXE which is broken
   - Cilium LB IP taking precedence over real flatcar IP and messed up the kube exposed IP. Need to tweak the k3s config
+- Blackbox not working
 
 # Problem Solved
 
