@@ -118,10 +118,10 @@ spec:
                   severity: critical
   valuesFrom:
     - kind: Secret
-      name: gatus-pushover
+      name: monitoring-pushover
       valuesKey: user-token
       targetPath: alertmanager.config.receivers[0].pushover_configs[0].user_key
     - kind: Secret
-      name: gatus-pushover
+      name: monitoring-pushover
       valuesKey: application-token
       targetPath: alertmanager.config.receivers[0].pushover_configs[0].token
