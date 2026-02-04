@@ -41,6 +41,8 @@ spec:
     namespace: flux-system
   interval: 30m
   values:
+    vector:
+      enabled: true
     server:
       replicaCount: 2
       retentionPeriod: 30d

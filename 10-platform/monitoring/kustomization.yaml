@@ -10,3 +10,4 @@ resources:
   - ./victoria-logs/ks.yaml
   - ./gatus/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
+  - ./blackbox-exporter/ks.yaml
