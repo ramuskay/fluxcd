@@ -22,9 +22,11 @@ spec:
   chartRef:
     kind: OCIRepository
     name: blackbox-exporter
+    namespace: flux-system
   interval: 1h
   values:
     fullnameOverride: blackbox-exporter
+    targetNamespace: monitoring
     config:
       modules:
         icmp:

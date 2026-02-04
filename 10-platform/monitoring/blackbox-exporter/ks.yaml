@@ -23,6 +23,7 @@ metadata:
   namespace: flux-system
 spec:
   path: "./10-platform/monitoring/blackbox-exporter/config"
+  targetNamespace: monitoring
   prune: true
   sourceRef:
     kind: GitRepository
