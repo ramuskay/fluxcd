@@ -33,4 +33,6 @@ spec:
   exclusionList:
     - error.*lookup.*github
     - dial.*tcp.*timeout
+    - context.*deadline.*exceeded
+    - dial.*tcp.*misbehaving
     - waiting.*socket
