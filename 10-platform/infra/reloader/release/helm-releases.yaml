@@ -1,0 +1,31 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/ocirepository_v1.json
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: reloader
+  namespace: flux-system
+spec:
+  interval: 15m
+  ref:
+    tag: 2.2.7
+  url: oci://ghcr.io/stakater/charts/reloader
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: reloader-release
+  namespace: flux-system
+spec:
+  targetNamespace: kube-system
+  chartRef:
+    kind: OCIRepository
+    name: reloader
+  interval: 1h
+  values:
+    #fullnameOverride: reloader
+    reloader:
+      podMonitor:
+        enabled: true
+        namespace: monitoring
