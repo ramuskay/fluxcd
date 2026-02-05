@@ -25,7 +25,7 @@ spec:
   interval: 1h
   values:
     fullnameOverride: reloader
-    reloader:
+    # reloader:
       # podMonitor:
       #   enabled: true
       #   namespace: monitoring
