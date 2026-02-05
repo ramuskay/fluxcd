@@ -88,7 +88,7 @@ spec:
         storageClass: longhorn
         size: 1Gi
       media:
-        existingClaim: nfs-pv
+        existingClaim: nfs-pvc
         globalMounts:
           - path: /media
       tmp:
