@@ -42,7 +42,7 @@ spec:
   interval: 30m
   values:
     server:
-      replicaCount: 2
+      replicaCount: 1
       retentionPeriod: 30d
       persistentVolume:
         size: 20Gi
