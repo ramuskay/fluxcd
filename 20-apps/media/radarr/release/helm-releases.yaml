@@ -88,8 +88,10 @@ spec:
         storageClass: longhorn
         size: 1Gi
       media:
-        existingClaim: nfs-pvc
-        globalMounts:
-          - path: /media
+        type: nfs
+        server: 192.168.0.15
+        path: /volume1/movies
+        # globalMounts:
+        #   - path: /media
       tmp:
         type: emptyDir
