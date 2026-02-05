@@ -20,6 +20,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: radarr
+    namespace: flux-system
   interval: 1h
   targetNamespace: media
   values:
