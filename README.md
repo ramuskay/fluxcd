@@ -13,6 +13,9 @@
 - Repair PXE which is broken
   - Cilium LB IP taking precedence over real flatcar IP and messed up the kube exposed IP. Need to tweak the k3s config
 - Blackbox not working
+- Too much resources used !!
+  - Check to switch to Victoria metrics only
+  - Explore Prometheus optim
 
 # Problem Solved
 

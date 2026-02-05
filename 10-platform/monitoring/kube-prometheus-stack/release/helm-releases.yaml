@@ -40,6 +40,7 @@ spec:
       jobNameOverride: "k3s-server"
     prometheus:
       prometheusSpec:
+        scrapeInterval: "120s"
         retention: 30d
         retentionSize: "50GiB"
         storageSpec:
