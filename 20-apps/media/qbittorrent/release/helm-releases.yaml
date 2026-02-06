@@ -112,3 +112,7 @@ spec:
         parentRefs:
           - name: cilium-internal
             namespace: network
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: http
