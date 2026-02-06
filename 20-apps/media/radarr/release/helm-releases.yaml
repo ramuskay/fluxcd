@@ -91,7 +91,7 @@ spec:
         type: persistentVolumeClaim
         accessMode: "ReadWriteOnce"
         storageClass: longhorn
-        size: 1Gi
+        size: 5Gi
       media:
         type: nfs
         server: 192.168.0.15
