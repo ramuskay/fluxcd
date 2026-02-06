@@ -108,3 +108,4 @@ spec:
         parentRefs:
           - name: cilium-internal
             namespace: network
+            sectionName: https
