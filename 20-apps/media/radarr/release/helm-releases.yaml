@@ -82,7 +82,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        forceRename: "aradarr"
+        forceRename: "radarr"
         ports:
           http:
             port: *port
