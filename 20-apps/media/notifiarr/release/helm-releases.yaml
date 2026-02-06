@@ -30,6 +30,10 @@ spec:
           reloader.stakater.com/auto: "true"
         containers:
           app:
+            ports:
+            - containerPort: &port 5454
+              name: http
+              protocol: TCP
             image:
               repository: golift/notifiarr
               tag: 0.9.2
@@ -47,19 +51,6 @@ spec:
                     name: radarr-secret
                     key: api_key
               TZ: America/New_York
-            # probes:
-            #   liveness: &probes
-            #     enabled: true
-            #     custom: true
-            #     spec:
-            #       httpGet:
-            #         path: /ping
-            #         port: *port
-            #       initialDelaySeconds: 0
-            #       periodSeconds: 10
-            #       timeoutSeconds: 1
-            #       failureThreshold: 3
-            #   readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -69,6 +60,11 @@ spec:
                 memory: 50Mi
               limits:
                 memory: 50Mi
+    service:
+      app:
+        ports:
+          http:
+            port: *port
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
