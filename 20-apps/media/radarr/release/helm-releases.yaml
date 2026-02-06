@@ -95,7 +95,7 @@ spec:
       media:
         type: nfs
         server: 192.168.0.15
-        path: /volume1/movies
+        path: /volume1/media
         # globalMounts:
         #   - path: /media
       tmp:
