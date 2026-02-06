@@ -79,3 +79,10 @@ spec:
         accessMode: "ReadWriteOnce"
         storageClass: longhorn
         size: 20Mi
+    route:
+      app:
+        hostnames:
+          - notifiarr.internal.beerus.fr
+        parentRefs:
+          - name: cilium-internal
+            namespace: network

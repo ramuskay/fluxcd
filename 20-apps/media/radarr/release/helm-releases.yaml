@@ -38,6 +38,7 @@ spec:
               repository: ghcr.io/home-operations/radarr
               tag: 6.1.1.10317
             env:
+              # Where to find : https://wiki.servarr.com/radarr/environment-variables
               RADARR__APP__INSTANCENAME: Radarr
               RADARR__AUTH__APIKEY:
                 valueFrom:
@@ -100,3 +101,10 @@ spec:
         #   - path: /media
       tmp:
         type: emptyDir
+    route:
+      app:
+        hostnames:
+          - radarr.internal.beerus.fr
+        parentRefs:
+          - name: cilium-internal
+            namespace: network
