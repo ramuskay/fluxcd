@@ -30,6 +30,10 @@ spec:
           reloader.stakater.com/auto: "true"
         containers:
           app:
+            ports:
+            - containerPort: &port 7878
+              name: http
+              protocol: TCP
             image:
               repository: ghcr.io/home-operations/radarr
               tag: 6.1.1.10317
@@ -44,7 +48,7 @@ spec:
               RADARR__AUTH__REQUIRED: DisabledForLocalAddresses
               RADARR__LOG__DBENABLED: "False"
               RADARR__LOG__LEVEL: info
-              RADARR__SERVER__PORT: &port 7878
+              RADARR__SERVER__PORT: *port
               RADARR__UPDATE__BRANCH: develop
               TZ: America/New_York
             probes:
@@ -68,7 +72,7 @@ spec:
               requests:
                 cpu: 20m
               limits:
-                memory: 350Mi.
+                memory: 350Mi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
