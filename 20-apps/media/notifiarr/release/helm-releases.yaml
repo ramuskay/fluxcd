@@ -44,7 +44,7 @@ spec:
                   secretKeyRef:
                     name: notifiarr-secret
                     key: dn_api_key
-              DN_RADARR_0_NAME: "Radarr"
+              DN_RADARR_0_NAME: "Radarr-canadium"
               DN_RADARR_0_URL: "http://radarr:7878"
               DN_RADARR_0_API_KEY:
                 valueFrom:
@@ -52,10 +52,10 @@ spec:
                     name: radarr-secret
                     key: api_key
               TZ: America/New_York
-            # securityContext:
-            #   allowPrivilegeEscalation: false
-            #   readOnlyRootFilesystem: true
-            #   capabilities: {drop: ["ALL"]}
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
             resources:
               requests:
                 memory: 50Mi
@@ -66,13 +66,13 @@ spec:
         ports:
           http:
             port: *port
-    # defaultPodOptions:
-    #   securityContext:
-    #     runAsNonRoot: true
-    #     runAsUser: 1000
-    #     runAsGroup: 1000
-    #     fsGroup: 1000
-    #     fsGroupChangePolicy: OnRootMismatch
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
     persistence:
       config:
         type: persistentVolumeClaim
