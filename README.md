@@ -14,8 +14,11 @@
   - Cilium LB IP taking precedence over real flatcar IP and messed up the kube exposed IP. Need to tweak the k3s config
 - Blackbox not working
 - Too much resources used !!
-  - Check to switch to Victoria metrics only
   - Explore Prometheus optim
+    - Check to switch to Victoria metrics only
+    - Scrape from 30 to 120s seems to mitigate a bit but to see on a longer period
+    - Test retention from 30d to 7d
+  - Check k3s-server proc seems to take 10% of the RAM on each node (test loading server without workload)
 
 # Problem Solved
 

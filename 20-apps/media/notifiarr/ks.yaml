@@ -1,0 +1,37 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: notifiarr-prereq
+  namespace: flux-system
+spec:
+  path: "./20-apps/media/notifiarr/prereq"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  wait: true
+  interval: 30m
+  retryInterval: 5m
+  timeout: 5m
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: notifiarr-release
+  namespace: flux-system
+spec:
+  path: "./20-apps/media/notifiarr/release"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  wait: true
+  interval: 30m
+  retryInterval: 5m
+  timeout: 5m
+  dependsOn:
+    - name: notifiarr-prereq
