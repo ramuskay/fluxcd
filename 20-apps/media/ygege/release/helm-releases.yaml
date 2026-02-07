@@ -74,6 +74,7 @@ spec:
                 memory: 75Mi
     service:
       app:
+        forceRename: "ygege"
         ports:
           http:
             port: *port
