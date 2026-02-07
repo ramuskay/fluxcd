@@ -1,0 +1,25 @@
+apiVersion: v1
+stringData:
+    api_key: ENC[AES256_GCM,data:j0HxT2WRpJMxKqMAmZSrpEq6msFETPDL7CP9UgPhwVE=,iv:fXO8mIQt2GPnfPfTSdSrEJBDICOdjh8DbRx/YdL5+N8=,tag:Tb+ouFXtnYIBRvhpxsqWMg==,type:str]
+kind: Secret
+metadata:
+    labels:
+        reconcile.fluxcd.io/watch: Enabled
+    name: prowlarr-secret
+    namespace: media
+type: Opaque
+sops:
+    age:
+        - recipient: age1kk6e6cphx3wm9fwdtev598pw39ymyj7cu4j7ksna0fyhxf3783js2ve88k
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA3aUIvRW1RQmd1bTQxZ2xP
+            MldkZWJNTzA2dnVyWDBla0JiTy9NRmd6bFhzCmszODJrazZsa2RqbkQ0UmdpaE4r
+            T0tUdGZCNTZ6amFxY1hpK05kdjJ4WmsKLS0tIGdzWGtFN29PZkgrdnJzaDI3cWlp
+            anFPdGJyK2kycktydU9LalBEdThIVTAK+F1msnSL9Cfd0wvlSc7E/K1RES0O10Xo
+            vuI6wZuAnHXGdQk+t5FvLwCtDzrCE3EeGxzMAOuZYQ22pmfWP0OorA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-02-07T14:34:41Z"
+    mac: ENC[AES256_GCM,data:P8HWcKzN0oHEInrbV+hsfIJPBKxVvhezGkFQ2RKngGTx/MO/QEHw0oFdTICQ5xaJfZCu4RavoXM6Euz9E325su1xDACrHv8Kw1E/4H+LEZQxFHv0z6JAZCPeNLa8MjZkKMqVqRyTav9ZoS1SpEDh3AEy8BU9GMs5BBXRs+GSVig=,iv:g2m3Laj/59EGPQMwY7MrsD0MoEuvB7uvJEZJS6dJA6c=,tag:KhBazP0HJBatXW2n61t2VQ==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.10.2

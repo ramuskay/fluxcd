@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: ygege
+  name: prowlarr
   namespace: flux-system
 spec:
   interval: 15m
@@ -14,86 +14,90 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: ygege
+  name: prowlarr
   namespace: flux-system
 spec:
   chartRef:
     kind: OCIRepository
-    name: ygege
+    name: prowlarr
     namespace: flux-system
   interval: 1h
   targetNamespace: media
   values:
     controllers:
-      ygege:
+      prowlarr:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
           app:
             ports:
-            - containerPort: &port 8715
+            - containerPort: &port 9696
               name: http
               protocol: TCP
             image:
-              repository: uwucode/ygege
-              tag: sha-8b4fa3d99161df944e2f20e729e3bec2c410a0a7
+              repository: ghcr.io/home-operations/prowlarr
+              tag: 2.3.2.5245
             env:
-              YGG_USERNAME:
+              # Where to find : https://wiki.servarr.com/prowlarr/environment-variables
+              PROWLARR__APP__INSTANCENAME: Prowlarr
+              PROWLARR__AUTH__APIKEY:
                 valueFrom:
                   secretKeyRef:
-                    name: ygege-secret
-                    key: username
-              YGG_PASSWORD:
-                valueFrom:
-                  secretKeyRef:
-                    name: ygege-secret
-                    key: password
+                    name: prowlarr-secret
+                    key: api_key
+              PROWLARR__AUTH__METHOD: External
+              PROWLARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              PROWLARR__LOG__DBENABLED: "False"
+              PROWLARR__LOG__LEVEL: info
+              PROWLARR__SERVER__PORT: *port
+              PROWLARR__UPDATE__BRANCH: develop
               TZ: America/New_York
-              BIND_IP: "0.0.0.0"
-              BIND_PORT: *port
             probes:
-              liveness:
+              liveness: &probes
                 enabled: true
                 custom: true
                 spec:
                   httpGet:
-                    path: /health
+                    path: /ping
                     port: *port
-                  initialDelaySeconds: 10
-                  periodSeconds: 30
-                  timeoutSeconds: 20
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
                   failureThreshold: 3
+              readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: {drop: ["ALL"]}
             resources:
               requests:
-                memory: 75Mi
+                cpu: 18m
+                memory: 128Mi
               limits:
-                memory: 75Mi
-    service:
-      app:
-        ports:
-          http:
-            port: *port
+                memory: 350Mi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 10001
-        runAsGroup: 10001
-        fsGroup: 10001
+        runAsUser: 1027
+        runAsGroup: 1000
+        fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        forceRename: "prowlarr"
+        ports:
+          http:
+            port: *port
     persistence:
       config:
         type: persistentVolumeClaim
         accessMode: "ReadWriteOnce"
         storageClass: longhorn
-        size: 20Mi
+        size: 50Mi
     route:
       app:
         hostnames:
-          - ygege.internal.beerus.fr
+          - prowlarr.internal.beerus.fr
         parentRefs:
           - name: cilium-internal
             namespace: network
