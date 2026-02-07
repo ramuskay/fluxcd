@@ -1,0 +1,26 @@
+apiVersion: v1
+data:
+    username: ENC[AES256_GCM,data:SWU3cfGx,iv:y4mNxbVR/uiYkfBEuUo622sPHNCSlhYtxeafwe1zo/Q=,tag:sjcn9wDAy2RWvgm/hi2eWA==,type:str]
+    password: ENC[AES256_GCM,data:7eFphGHjCx/F+SEJpQBZgUjffkg=,iv:VqzinJhpovxa5f9w1vRMckNaDR5a3GK/C/rNG1FzZNA=,tag:eJzCL1G7Aa0JMnziP651+Q==,type:str]
+kind: Secret
+metadata:
+    labels:
+        reconcile.fluxcd.io/watch: Enabled
+    name: ygege-secret
+    namespace: media
+type: Opaque
+sops:
+    age:
+        - recipient: age1kk6e6cphx3wm9fwdtev598pw39ymyj7cu4j7ksna0fyhxf3783js2ve88k
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBsM2ZsVm91WC8rVnlSK3ZK
+            NktmSDgxZCtBMVFwZDFTSmdESlhnMzRIOUZJCmQ5ZS8wYnZOVUc0dURyUG4xQWJV
+            OTRsbHBnNjN2NityZ01uenJXeGZjbGcKLS0tIHkwbHBqWFhrbVg5dVcrK0tKYUVV
+            M0xpZGU5SHRGSlR1Ni94NDF1QnpTcFkKGNwKgPdHPSP2RfBLz2ZNAGcF2EDOwKwQ
+            mB1+Ag5s8qEfElu2jD6MXe1B2LeeecUjTPiUD5De8g1RXR0ktrUWSA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-02-07T00:47:53Z"
+    mac: ENC[AES256_GCM,data:2j6i2f0lVl8S28Pg6P7dhOePRoZn/dGjR0DUoo4Ld+j6h1JuPIVWSLVSztDHSPlZJsSCGNSFcR7a8CYN4UotDArt76nTPq19aVovpQBtCOidrUT4DsmkBorOUW0HtvRORHMC0/ffcchlO8U0QCE5HvGxv2TsmchWcdXeH8vQsAM=,iv:/rWZcVViNkfAZIwus4LK7ELIqZ/LYUX79uBT26jUMQs=,tag:XI+m4w32ajJUEjTXPHmD6w==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.10.2

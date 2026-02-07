@@ -1,0 +1,88 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: ygege
+  namespace: flux-system
+spec:
+  interval: 15m
+  ref:
+    tag: 4.6.2
+  url: oci://ghcr.io/bjw-s-labs/helm/app-template
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: ygege
+  namespace: flux-system
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: ygege
+    namespace: flux-system
+  interval: 1h
+  targetNamespace: media
+  values:
+    controllers:
+      ygege:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            ports:
+            - containerPort: &port 8715
+              name: http
+              protocol: TCP
+            image:
+              repository: uwucode/ygege
+              tag: sha-8b4fa3d99161df944e2f20e729e3bec2c410a0a7
+            env:
+              YGG_USERNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: ygege-secret
+                    key: username
+              YGG_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: ygege-secret
+                    key: password
+              TZ: America/New_York
+              BIND_IP: "0.0.0.0"
+              BIND_PORT: *port
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                memory: 75Mi
+              limits:
+                memory: 75Mi
+    service:
+      app:
+        ports:
+          http:
+            port: *port
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    persistence:
+      config:
+        type: persistentVolumeClaim
+        accessMode: "ReadWriteOnce"
+        storageClass: longhorn
+        size: 20Mi
+    route:
+      app:
+        hostnames:
+          - ygege.internal.beerus.fr
+        parentRefs:
+          - name: cilium-internal
+            namespace: network
+            sectionName: https
