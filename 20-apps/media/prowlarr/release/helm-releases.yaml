@@ -28,6 +28,21 @@ spec:
       prowlarr:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          dl-ygege-defs:
+            image:
+              repository: busybox
+              tag: latest
+            command:
+              - /bin/sh
+              - -c
+            args:
+              - |
+                mkdir -p /config/Definitions/Custom
+                if [ ! -f /config/Definitions/Custom/ygege.yml ]; then
+                  wget https://raw.githubusercontent.com/UwUDev/ygege/master/ygege.yml \
+                    -O /config/Definitions/Custom/ygege.yml
+                fi
         containers:
           app:
             ports:
@@ -60,7 +75,7 @@ spec:
                   httpGet:
                     path: /ping
                     port: *port
-                  initialDelaySeconds: 0
+                  initialDelaySeconds: 20
                   periodSeconds: 10
                   timeoutSeconds: 1
                   failureThreshold: 3
