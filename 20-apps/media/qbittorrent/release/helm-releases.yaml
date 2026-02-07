@@ -36,6 +36,10 @@ spec:
             env:
               QBT_WEBUI_PORT: &port 8080
               QBT_TORRENTING_PORT: &torrentPort 6881
+            ports:
+            - containerPort: *port
+              name: http
+              protocol: TCP
             probes:
               liveness:
                 enabled: true
