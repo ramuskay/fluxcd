@@ -103,13 +103,16 @@ spec:
         accessMode: "ReadWriteOnce"
         storageClass: longhorn
         size: 200Mi
+        globalMounts:
+          - path: /config/qBittorrent
+            subPath: qBittorrent
       downloads:
         type: nfs
         server: 192.168.0.15
         path: /volume1/media/torrent
         globalMounts:
-          - path: /mnt/Downloads/qbittorrent
-            subPath: Downloads/qbittorrent
+          - path: /config/Downloads
+            subPath: Downloads
       tmp:
         type: emptyDir
     route:
