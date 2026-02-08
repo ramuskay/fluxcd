@@ -31,7 +31,7 @@ spec:
         containers:
           app:
             image:
-              repository: lscr.io/linuxserver/qbittorrent
+              repository: ghcr.io/home-operations/qbittorrent
               tag: 5.1.4
             env:
               QBT_WEBUI_PORT: &port 8080
@@ -82,6 +82,7 @@ spec:
           http:
             port: *port
       bittorrent:
+        # TO be check once network stack is fully setup
         # type: LoadBalancer
         # annotations:
         #   lbipam.cilium.io/ips: 10.1.6.61
