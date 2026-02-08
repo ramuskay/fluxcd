@@ -31,7 +31,7 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/home-operations/qbittorrent
+              repository: lscr.io/linuxserver/qbittorrent
               tag: 5.1.4
             env:
               QBT_WEBUI_PORT: &port 8080
@@ -111,9 +111,6 @@ spec:
         type: nfs
         server: 192.168.0.15
         path: /volume1/media/torrent
-        globalMounts:
-          - path: /media/Downloads/qbittorrent
-            subPath: Downloads/qbittorrent
       tmp:
         type: emptyDir
     route:
