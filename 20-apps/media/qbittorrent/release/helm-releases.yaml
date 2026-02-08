@@ -109,7 +109,6 @@ spec:
         path: /volume1/media/torrent
         globalMounts:
           - path: /media/torrent
-            subPath: torrent
       tmp:
         type: emptyDir
     route:
