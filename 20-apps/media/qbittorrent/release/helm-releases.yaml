@@ -103,6 +103,10 @@ spec:
         accessMode: "ReadWriteOnce"
         storageClass: longhorn
         size: 200Mi
+        advancedMounts:
+          qbittorrent:
+            app:
+              - path: /config
       downloads:
         type: nfs
         server: 192.168.0.15
