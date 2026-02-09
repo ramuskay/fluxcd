@@ -110,3 +110,7 @@ spec:
           - path: /app/config
       tmp:
         type: emptyDir
+      cache:
+        type: emptyDir
+        globalMounts:
+         - path: /app/.next/cache
