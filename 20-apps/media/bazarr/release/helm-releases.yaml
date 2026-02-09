@@ -1,0 +1,111 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: bazarr
+  namespace: flux-system
+spec:
+  interval: 15m
+  ref:
+    tag: 4.6.2
+  url: oci://ghcr.io/bjw-s-labs/helm/app-template
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: bazarr
+  namespace: flux-system
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: bazarr
+    namespace: flux-system
+  interval: 1h
+  targetNamespace: media
+  values:
+    controllers:
+      bazarr:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            ports:
+            - containerPort: &port 6767
+              name: http
+              protocol: TCP
+            image:
+              repository: ghcr.io/home-operations/bazarr
+              tag: 4.0.16.2946@sha256:22651c750eedb091f6d76ade95dbecae0eeafe2b55432c3b8d8b042e8745f344
+            env:
+              # Where to find : https://wiki.servarr.com/bazarr/environment-variables
+              BAZARR__APP__INSTANCENAME: Bazarr
+              BAZARR__AUTH__APIKEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: bazarr-secret
+                    key: api_key
+              BAZARR__AUTH__METHOD: External
+              BAZARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              BAZARR__LOG__DBENABLED: "False"
+              BAZARR__LOG__LEVEL: info
+              BAZARR__SERVER__PORT: *port
+              BAZARR__UPDATE__BRANCH: develop
+              TZ: America/New_York
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ping
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 20m
+              limits:
+                memory: 350Mi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1027
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        forceRename: "bazarr"
+        ports:
+          http:
+            port: *port
+    persistence:
+      config:
+        type: persistentVolumeClaim
+        accessMode: "ReadWriteOnce"
+        storageClass: longhorn
+        size: 100Mi
+      media:
+        type: nfs
+        server: 192.168.0.15
+        path: /volume1/media
+        # globalMounts:
+        #   - path: /media
+      tmp:
+        type: emptyDir
+    route:
+      app:
+        hostnames:
+          - bazarr.internal.beerus.fr
+        parentRefs:
+          - name: cilium-internal
+            namespace: network
+            sectionName: https
