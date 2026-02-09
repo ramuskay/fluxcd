@@ -8,6 +8,6 @@ resources:
   - ./ygege/ks.yaml
   - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
-  - ./overseer/ks.yaml
+  - ./seer/ks.yaml
   - ./radarr/ks.yaml
   - ./sonarr/ks.yaml
