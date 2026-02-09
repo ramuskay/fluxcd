@@ -29,6 +29,7 @@ spec:
         containers:
           main:
             image:
+              repository: ghcr.io/immich-app/immich-server
               tag: v2.5.5
             env:
               REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
