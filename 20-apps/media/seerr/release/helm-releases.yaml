@@ -29,13 +29,17 @@ spec:
           reloader.stakater.com/auto: "true"
         containers:
           app:
+            ports:
+            - containerPort: &port 5055
+              name: http
+              protocol: TCP
             image:
               repository: ghcr.io/seerr-team/seerr
               tag: develop@sha256:14b676bf75442d3e57913ef276103d16d2e5c6c1ef61153a6f5133da7c6c74bd
             env:
               TZ: America/New_York
               LOG_LEVEL: "info"
-              PORT: &port 5055
+              PORT: *port
               API_KEY:
                 valueFrom:
                   secretKeyRef:
