@@ -108,21 +108,15 @@ spec:
           type: emptyDir
           accessMode: ReadWriteMany
           # storageClass: your-class
-    service:
-      server:
-        primary: true
-        ports:
-          http:
-            port: 80
-    route:
-      server:
-        hostnames:
-          - immich.beerus.fr
-        parentRefs:
-          - name: cilium-external
-            namespace: network
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: server
-                port: 80
+    # route:
+    #   server:
+    #     hostnames:
+    #       - immich.beerus.fr
+    #     parentRefs:
+    #       - name: cilium-external
+    #         namespace: network
+    #         sectionName: https
+    #     rules:
+    #       - backendRefs:
+    #           - identifier: server
+    #             port: 80
