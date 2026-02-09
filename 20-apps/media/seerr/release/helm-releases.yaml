@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: seer
+  name: seerr
   namespace: flux-system
 spec:
   interval: 15m
@@ -15,7 +15,9 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: seerr
+  namespace: flux-system
 spec:
+  targetNamespace: media
   chartRef:
     kind: OCIRepository
     name: seerr
@@ -89,7 +91,7 @@ spec:
             conditions: ["[STATUS] == 200"]
         hostnames:
           - ombi.beerus.fr
-          - seer.beerus.fr
+          - seerr.beerus.fr
           - requests.beerus.fr
         parentRefs:
           - name: envoy-external

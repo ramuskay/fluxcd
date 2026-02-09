@@ -5,7 +5,7 @@ kind: Secret
 metadata:
     labels:
         reconcile.fluxcd.io/watch: Enabled
-    name: seer-secret
+    name: seerr-secret
     namespace: media
 type: Opaque
 sops:
