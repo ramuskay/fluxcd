@@ -68,12 +68,12 @@ spec:
                 memory: 1Gi
               limits:
                 memory: 6Gi
-            # securityContext:
-            #   allowPrivilegeEscalation: false
-            #   capabilities:
-            #     drop:
-            #       - ALL
-            #   readOnlyRootFilesystem: true
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+              readOnlyRootFilesystem: true
     service:
       app:
         forceRename: "torrent"
@@ -91,13 +91,13 @@ spec:
           bittorrent-tcp:
             port: *torrentPort
             protocol: TCP
-    # defaultPodOptions:
-    #   securityContext:
-    #     runAsNonRoot: true
-    #     runAsUser: 1027
-    #     runAsGroup: 1000
-    #     fsGroup: 1000
-    #     fsGroupChangePolicy: OnRootMismatch
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1027
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
     persistence:
       config:
         type: persistentVolumeClaim
