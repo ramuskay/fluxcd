@@ -51,6 +51,13 @@ spec:
                   secretKeyRef:
                     name: radarr-secret
                     key: api_key
+              DN_SONARR_0_NAME: "Sonarr-canadium"
+              DN_SONARR_0_URL: "http://sonarr:8989"
+              DN_SONARR_0_API_KEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: sonarr-secret
+                    key: api_key
               TZ: America/New_York
             securityContext:
               allowPrivilegeEscalation: false

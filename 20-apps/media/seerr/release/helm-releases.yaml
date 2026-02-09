@@ -102,5 +102,7 @@ spec:
         accessMode: "ReadWriteOnce"
         storageClass: longhorn
         size: 50Mi
+        globalMounts:
+          - path: /app/config
       tmp:
         type: emptyDir
