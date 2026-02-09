@@ -36,7 +36,7 @@ spec:
               protocol: TCP
             image:
               repository: ghcr.io/home-operations/bazarr
-              tag: 4.0.16.2946@sha256:22651c750eedb091f6d76ade95dbecae0eeafe2b55432c3b8d8b042e8745f344
+              tag: 1.5.5@sha256:0949a30fb6e6703a63aaa9775760b8af820f7871f6a9aa9207e2ea00fd855e2c
             env:
               # Where to find : https://wiki.servarr.com/bazarr/environment-variables
               BAZARR__APP__INSTANCENAME: Bazarr
