@@ -5,6 +5,7 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./ygege/ks.yaml
+  - ./tautulli/ks.yaml
   - ./qbittorrent/ks.yaml
   - ./radarr/ks.yaml
   - ./sonarr/ks.yaml
