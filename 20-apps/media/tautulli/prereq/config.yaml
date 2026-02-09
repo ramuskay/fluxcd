@@ -1,0 +1,25 @@
+apiVersion: v1
+stringData:
+    api_key: ENC[AES256_GCM,data:/isUwY2z/Z2mqCPw7p0SxBVtwTfxzA++dtQOb+5LkDY=,iv:cOWrn0sSnLkalp4TyTc1B1KFgjAuThz/8BUfrAL8bZk=,tag:qyqWHSxhCUdIjw4okogcxQ==,type:str]
+kind: Secret
+metadata:
+    labels:
+        reconcile.fluxcd.io/watch: Enabled
+    name: tautulli-secret
+    namespace: media
+type: Opaque
+sops:
+    age:
+        - recipient: age1kk6e6cphx3wm9fwdtev598pw39ymyj7cu4j7ksna0fyhxf3783js2ve88k
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvTWFIUUlUWmwzejFaRzY1
+            NTk1b1R6TWN2dW1iQ1V5dDNVYmQ3SFdzYW04ClVaT2ljS2dYQk83M2szeFd5M1hl
+            eFM1cS9UY3RYUENyMkdzZTdPUi9RaTQKLS0tIFJPZ0Y2dVV3clJjc09jTXlrUTJs
+            T3BPaTU2UTVKMWg2YkhYWURFbGFhbFUKkp9ms85Rtb+V/QONxoVjqegwcpCc/UbR
+            PgLHPLCMjACxKWK3iXTib6R1CC2yF0stiwPRtBGl3bljdrJNMnu8OA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-02-05T19:57:53Z"
+    mac: ENC[AES256_GCM,data:naXTCg+W4MBs2CSNFkYSyN8KmQAeRfQ7sarXnh3R0HT8j3FqZGaWWUjjo99JqtE8R7SF0U8qlY7rS52hAqPQTMvi0D+JTRHjIfqV0JYvxnnePx1KXlsx8vhNtM8GlsU/keaIZt9VjxO2nz5MK1+7C00K2ZpKyTHiEfdNGU8+CEU=,iv:5UHFO98OA6MsVp26pHvcohHfJNp0Xwys8DCkuUUmIQ0=,tag:Z5sS9ipnfQNI6Z+Oy69ICg==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.10.2

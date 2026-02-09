@@ -1,0 +1,107 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: tautulli
+  namespace: flux-system
+spec:
+  interval: 15m
+  ref:
+    tag: 4.6.2
+  url: oci://ghcr.io/bjw-s-labs/helm/app-template
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: tautulli
+  namespace: flux-system
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: tautulli
+    namespace: flux-system
+  interval: 1h
+  targetNamespace: media
+  values:
+    controllers:
+      tautulli:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            ports:
+            - containerPort: &port 8181
+              name: http
+              protocol: TCP
+            image:
+              repository: ghcr.io/home-operations/tautulli
+              tag: 2.16.0@sha256:772e1af814159bd7e774273d4f9170b1a0f7129f2ad39be5619a458b7b0fd4b0
+            env:
+              TAUTULLI_API_KEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: tautulli-secret
+                    key: api_key
+              TAUTULLI_HTTP_BASE_URL: https://tautulli.internal.beerus.fr
+              TAUTULLI_HTTP_PORT: *port
+              TZ: America/New_York
+            probes:
+              liveness:
+                enabled: true
+                spec:
+                  periodSeconds: 30
+                  timeoutSeconds: 5
+                  failureThreshold: 5
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /status
+                    port: *port
+                  periodSeconds: 10
+                  timeoutSeconds: 5
+                  failureThreshold: 5
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 200Mi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        ports:
+          http:
+            port: *port
+    persistence:
+      config:
+        type: persistentVolumeClaim
+        accessMode: "ReadWriteOnce"
+        storageClass: longhorn
+        size: 50Mi
+      tmp:
+        type: emptyDir
+    route:
+      app:
+        hostnames:
+          - tautulli.internal.beerus.fr
+        parentRefs:
+          - name: cilium-internal
+            namespace: network
+            sectionName: https
