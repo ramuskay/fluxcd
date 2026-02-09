@@ -112,6 +112,8 @@ spec:
         type: nfs
         server: 192.168.0.15
         path: /volume1/media/torrent
+        globalMounts:
+          - path: /media/torrent
       tmp:
         type: emptyDir
     route:
