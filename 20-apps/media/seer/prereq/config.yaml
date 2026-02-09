@@ -1,0 +1,25 @@
+apiVersion: v1
+stringData:
+    api_key: ENC[AES256_GCM,data:zo2mqkrvWbXg+WX0ztUoEMHGW2gJMlajvk+gGXlldNUbm/trve1qScup++yt0HHqQjZEh3uP+gfV1S/kVWtm/zxozHA=,iv:GC6RATsg0AqHFx3eeBYE/bmw7u3Y88sVLmg2fgLJ+Mc=,tag:WYPZmzkO0sUmsN5BolmVNw==,type:str]
+kind: Secret
+metadata:
+    labels:
+        reconcile.fluxcd.io/watch: Enabled
+    name: seer-secret
+    namespace: media
+type: Opaque
+sops:
+    age:
+        - recipient: age1kk6e6cphx3wm9fwdtev598pw39ymyj7cu4j7ksna0fyhxf3783js2ve88k
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvMkpiaE9OZkhGejI2UUpt
+            TlZKNitKWXdnN09vSHk2R3RmaUdlRURHVjJ3CjhQdU5zQjFzVjJqZDFJN0JYd09m
+            bmY5Z1UyUEZEUExFUDJCUUt2NjBhRGcKLS0tIGhGejh1RmpVcEZNWk1Gb29vRTgx
+            Qzg1ZndJKzgrRjVBZC90QlFQL0VBSkEKlG+Dmdqe2UiTHhdphTtRHFI7kHj3C0nM
+            Mf//WosoMg2F7ZgXE25RMkyieueU7cuBciqnQ19YEVmrRnkGt485ug==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-02-09T14:38:18Z"
+    mac: ENC[AES256_GCM,data:Fl2sk3OaEA8anNc4ysCU9KHEudbhSeggHiQdBeuasV2RjzipI5w7VEpUfKjRpw0I2OfN+lUaA6Tq+nS73zD5tC5dJeiJe+h9JZDJtcQq+TZp783u0Ut3IKhJQ4sq28SZ5anH3i1hgm8LjXuIxSSN2rCek2JSyM7LCvAsePJ0zSI=,iv:nTgtgq0Yt2wZTKxSjxCa35swXfXBItF4FZR/TX3CDQI=,tag:Iswr3KklwkQejfdlWErxOg==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.10.2

@@ -103,7 +103,7 @@ spec:
         type: persistentVolumeClaim
         accessMode: "ReadWriteOnce"
         storageClass: longhorn
-        size: 200Mi
+        size: 50Mi
         advancedMounts:
           qbittorrent:
             app:

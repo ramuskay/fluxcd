@@ -4,8 +4,10 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./radarr/ks.yaml
   - ./notifiarr/ks.yaml
-  - ./qbittorrent/ks.yaml
-  - ./prowlarr/ks.yaml
   - ./ygege/ks.yaml
+  - ./prowlarr/ks.yaml
+  - ./qbittorrent/ks.yaml
+  - ./overseer/ks.yaml
+  - ./radarr/ks.yaml
+  - ./sonarr/ks.yaml
