@@ -13,7 +13,8 @@
 - Repair PXE which is broken
   - Cilium LB IP taking precedence over real flatcar IP and messed up the kube exposed IP. Need to tweak the k3s config
 - Blackbox not working
-- HTTP Route from media are not working (while from monitoring it is)
+- When one node is off pods are not rescheduling correctly
+  - See that : https://longhorn.github.io/longhorn-tests/manual/pre-release/node/improve-node-failure-handling/
 - Too much resources used !!
   - Explore Prometheus optim
     - Check to switch to Victoria metrics only
