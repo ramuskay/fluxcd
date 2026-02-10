@@ -1,13 +1,13 @@
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+kind: OCIRepository
 metadata:
   name: cloudnative-pg
   namespace: flux-system
 spec:
   interval: 1h
+  url: oci://ghcr.io/cloudnative-pg/charts/cloudnative-pg
   ref:
     tag: 0.27.1
-  url: https://cloudnative-pg.github.io/charts
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
